@@ -4,11 +4,9 @@
     <defaultcontrol always="true">6000</defaultcontrol>
     <coordinates>
         <system>1</system>
-        <posx>720</posx>
+        <posx>0</posx>
         <posy>0</posy>
     </coordinates>
-    <animation effect="slide" start="560,0" end="0,0" time="250">WindowOpen</animation>
-    <animation effect="slide" start="0,0" end="560,0" time="250">WindowClose</animation>
     <controls>
         <control type="label" id="6001">
             <description>visibility marker for selection box</description>
@@ -16,45 +14,45 @@
 
 
         <control type="image">
-            <posx>0</posx>
-            <posy>0</posy>
-            <width>560</width>
-            <height>720</height>
-            <texture>tvguide-glasspane.png</texture>
+            <posx>150</posx>
+            <posy>100</posy>
+            <width>1010</width>
+            <height>510</height>
+            <texture>menu-stream.png</texture>
         </control>
         <control type="image">
-            <posx>0</posx>
-            <posy>0</posy>
-            <width>560</width>
-            <height>720</height>
-            <texture>tvguide-glasspane.png</texture>
+            <posx>150</posx>
+            <posy>100</posy>
+            <width>1010</width>
+            <height>510</height>
+            <texture>menu-stream.png</texture>
         </control>
 
         <control type="group">
-            <posx>-560</posx>
-            <posy>320</posy>
+            <posx>200</posx>
+            <posy>435</posy>
             <width>560</width>
             <height>38</height>
             <visible>!Control.IsVisible(6001)</visible>
             <animation type="Visible">
-                <effect type="slide" start="560,0" end="0,0" time="500" />
+                <effect type="slide" start="450,0" end="0,0" time="500" />
             </animation>
             <animation type="Hidden">
-                <effect type="slide" start="0,0" end="560,0" time="500" />
+                <effect type="slide" start="0,0" end="450,0" time="500" />
             </animation>
 
             <control type="image">
                 <posx>0</posx>
-                <posy>0</posy>
-                <width>560</width>
-                <height>160</height>
+                <posy>20</posy>
+                <width>400</width>
+                <height>40</height>
                 <texture>tvguide-glasspane.png</texture>
             </control>
             <control type="image">
                 <posx>0</posx>
-                <posy>0</posy>
-                <width>560</width>
-                <height>160</height>
+                <posy>20</posy>
+                <width>400</width>
+                <height>40</height>
                 <texture>tvguide-glasspane.png</texture>
             </control>
 
@@ -68,13 +66,13 @@
             <control type="image">
                 <posx>40</posx>
                 <posy>20</posy>
-                <width>500</width>
+                <width>460</width>
                 <height>38</height>
             </control>
             <control type="button" id="6002">
                 <posx>36</posx>
                 <posy>20</posy>
-                <width>500</width>
+                <width>360</width>
                 <height>38</height>
                 <aligny>center</aligny>
                 <font>font13</font>
@@ -86,17 +84,18 @@
             <control type="label">
                 <posx>36</posx>
                 <posy>70</posy>
-                <width>500</width>
+                <width>410</width>
                 <height>60</height>
                 <font>font13</font>
                 <textcolor>ffffffff</textcolor>
+				<visible>false</visible>
                 <label>$ADDON[script.ftvguide 30501]</label>
             </control>
         </control>
 
         <control type="label">
-            <posx>20</posx>
-            <posy>20</posy>
+            <posx>90</posx>
+            <posy>112</posy>
             <width>520</width>
             <height>40</height>
             <align>center</align>
@@ -105,11 +104,25 @@
             <textcolor>ffffffff</textcolor>
             <label>$ADDON[script.ftvguide 30500]</label>
         </control>
+		<control type="label">
+            <description>Help and Tips</description>
+            <posx>180</posx>
+            <posy>160</posy>
+            <width>400</width>
+            <height>400</height>
+            <textcolor>ffffffff</textcolor>
+            <font>font13</font>
+			<align>justify</align>
+            <aligny>top</aligny>
+			<wrapmultiline>true</wrapmultiline>
+			<autoscroll time="3600" delay="6000" repeat="6000">true</autoscroll>
+			<label>Press left to pull a channel out, then move it up or down. When in place, press right again to set. Pressing on a channel in the list will enable or disable it.</label>
+        </control>
         <control type="fixedlist" id="6000">
-            <posx>20</posx>
-            <posy>60</posy>
+            <posx>600</posx>
+            <posy>175</posy>
             <width>520</width>
-            <height>560</height>
+            <height>350</height>
             <viewtype label="list">list</viewtype>
             <orientation>vertical</orientation>
             <focusposition>7</focusposition>
@@ -177,8 +190,8 @@
         </control>
 
         <control type="button" id="6003">
-            <posx>70</posx>
-            <posy>640</posy>
+            <posx>736</posx>
+            <posy>550</posy>
             <width>200</width>
             <height>40</height>
             <align>center</align>
@@ -186,15 +199,15 @@
             <font>font13</font>
             <textcolor>ffffffff</textcolor>
             <label>$ADDON[script.ftvguide 30502]</label>
-            <texturefocus>tvguide-program-grey-focus.png</texturefocus>
-            <texturenofocus>tvguide-program-grey.png</texturenofocus>
+            <texturefocus>menu-grey-focus.png</texturefocus>
+            <texturenofocus>menu-grey.png</texturenofocus>
             <onleft>6000</onleft>
             <onright>6004</onright>
             <onup>6000</onup>
         </control>
         <control type="button" id="6004">
-            <posx>290</posx>
-            <posy>640</posy>
+            <posx>937</posx>
+            <posy>550</posy>
             <width>200</width>
             <height>40</height>
             <align>center</align>
@@ -202,8 +215,8 @@
             <font>font13</font>
             <textcolor>ffffffff</textcolor>
             <label>$ADDON[script.ftvguide 30503]</label>
-            <texturefocus>tvguide-program-grey-focus.png</texturefocus>
-            <texturenofocus>tvguide-program-grey.png</texturenofocus>
+            <texturefocus>menu-grey-focus.png</texturefocus>
+            <texturenofocus>menu-grey.png</texturenofocus>
             <onleft>6003</onleft>
             <onright>6000</onright>
             <onup>6000</onup>
