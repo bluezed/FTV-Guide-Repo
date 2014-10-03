@@ -13,7 +13,32 @@
             <description>tabs visibility marker</description>
             <visible>false</visible>
         </control>
-
+		
+		<control type="image">
+            <posx>1280</posx>
+            <posy>720</posy>
+            <width>-346</width>
+            <height>-203</height>
+            <texture>video-mask.png</texture>
+        </control>
+		<control type="image">
+            <posx>1280</posx>
+            <posy>720</posy>
+            <width>-346</width>
+            <height>-203</height>
+            <texture>video-mask.png</texture>
+        </control>
+		
+		<control type="image" id="4023">
+            <description>Program logo / Source logo</description>
+            <posx>930</posx>
+            <posy>515</posy>
+            <width>320</width>
+            <height>160</height>
+            <aspectratio>keep</aspectratio>
+            <fadetime>500</fadetime>
+            <texture>tvguide-logo-epg.png</texture>
+        </control>
 
         <control type="image">
             <posx>150</posx>

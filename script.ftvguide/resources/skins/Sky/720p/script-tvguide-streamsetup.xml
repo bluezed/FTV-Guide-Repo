@@ -13,7 +13,21 @@
             <description>tabs visibility marker</description>
             <visible>false</visible>
         </control>
-
+		
+		<control type="image">
+            <posx>900</posx>
+            <posy>0</posy>
+            <width>400</width>
+            <height>250</height>
+            <texture>video-mask.png</texture>
+        </control>
+		<control type="image">
+            <posx>900</posx>
+            <posy>0</posy>
+            <width>400</width>
+            <height>250</height>
+            <texture>video-mask.png</texture>
+        </control>
 
         <control type="image">
             <posx>150</posx>
