@@ -52,5 +52,4 @@ docs/_build/
 
 # PyBuilder
 target/
-resources/skins/Default/media/Thumbs.db
-resources/skins/Sky/media/Thumbs.db
+Thumbs.db
