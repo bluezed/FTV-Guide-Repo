@@ -29,3 +29,4 @@ Support for changing skins in the settings
 Setting to switch off channel logos
 addons.ini now also gets downloaded using interval setting
 Database-reset feature (Thanks to Podgod)
+Removed buggalo dependency

@@ -17,15 +17,12 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 #
-import buggalo
 import gui
-
-buggalo.SUBMIT_URL = 'http://tommy.winther.nu/exception/submit.php'
 
 try:
     w = gui.TVGuide()
     w.doModal()
     del w
 
-except Exception:
-    buggalo.onExceptionRaised()
+except:
+    print "EXCEPTION RAISED!"

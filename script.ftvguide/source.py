@@ -24,7 +24,6 @@ import datetime
 import time
 import urllib2
 from xml.etree import ElementTree
-import buggalo
 
 from strings import *
 
@@ -117,10 +116,6 @@ class Database(object):
         self.updateFailed = False
         self.settingsChanged = None
         self.alreadyTriedUnlinking = False
-        #buggalo.addExtraData('source', self.source.KEY)
-        #for key in SETTINGS_TO_CHECK:
-        #    buggalo.addExtraData('setting: %s' % key, ADDON.getSetting(key))
-
         self.channelList = list()
 
         profilePath = xbmc.translatePath(ADDON.getAddonInfo('profile'))
@@ -159,7 +154,6 @@ class Database(object):
 
             except Exception:
                 print 'Database.eventLoop() >>>>>>>>>> exception!'
-                buggalo.onExceptionRaised()
 
         print 'Database.eventLoop() >>>>>>>>>> exiting...'
 
