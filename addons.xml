@@ -21,13 +21,13 @@
 	</requires>
 	<extension point="xbmc.python.script" library="addon.py"/>
 	<extension point="xbmc.addon.metadata">
-		<summary lang="be">TV Guide with XMLTV and streaming support</summary>
+		<summary lang="be">FTV Guide allows you to combine some of your favourite live TV plugins for use with a fully working EPG</summary>
 		<summary lang="ca">Guia de TV amb suport de XMLTV i flux de dades</summary>
-		<summary lang="da">TV Guide med XMLTV og streaming support</summary>
-		<summary lang="de">TV Guide mit XMLTV und Streamingunterstützung</summary>
+		<summary lang="da">FTV Guide allows you to combine some of your favourite live TV plugins for use with a fully working EPG</summary>
+		<summary lang="de">FTV Guide erlaubt es Ihre Live TV Plugins mit einem TV Guide zu kombinieren</summary>
 		<summary lang="el">Οδηγός Τηλεόρασης με XMLTV και υποστήριξη ροών</summary>
-		<summary lang="en">TV Guide with XMLTV and streaming support</summary>
-		<summary lang="en_US">TV Guide with XMLTV and streaming support</summary>
+		<summary lang="en">FTV Guide allows you to combine some of your favourite live TV plugins for use with a fully working EPG</summary>
+		<summary lang="en_US">FTV Guide allows you to combine some of your favourite live TV plugins for use with a fully working EPG</summary>
 		<summary lang="es">TV Guide con XMLTV y soporte para streaming</summary>
 		<summary lang="fr">Guide TV avec support du XMLTV et du streaming</summary>
 		<summary lang="fr_CA">Guide télé avec prise en charge de XMLTV et de la lecture en transit</summary>
@@ -44,13 +44,13 @@
 		<summary lang="sk">TV Program s podporou XMLTV a streamovania</summary>
 		<summary lang="sv">TV-guide med XML-TV och strömningsstöd</summary>
 		<summary lang="zh">支持XMLTV和流的电视指南</summary>
-		<description lang="be">TV Guide with XMLTV and streaming support</description>
+		<description lang="be">FTV Guide allows you to combine some of your favourite live TV plugins for use with a fully working EPG</description>
 		<description lang="ca">Guia de TV amb suport de XMLTV i flux de dades</description>
 		<description lang="da">TV Guide med XMLTV og streaming support</description>
-		<description lang="de">TV Guide mit XMLTV und Streamingunterstützung</description>
+		<description lang="de">FTV Guide erlaubt es Ihre Live TV Plugins mit einem TV Guide zu kombinieren</description>
 		<description lang="el">Οδηγός Τηλεόρασης με XMLTV και υποστήριξη ροών</description>
-		<description lang="en">TV Guide with XMLTV and streaming support</description>
-		<description lang="en_US">TV Guide with XMLTV and streaming support</description>
+		<description lang="en">FTV Guide allows you to combine some of your favourite live TV plugins for use with a fully working EPG</description>
+		<description lang="en_US">TFTV Guide allows you to combine some of your favourite live TV plugins for use with a fully working EPG</description>
 		<description lang="es">TV Guide con XMLTV y soporte para streaming</description>
 		<description lang="fr">Guide TV avec support du XMLTV et du streaming</description>
 		<description lang="fr_CA">Guide télé avec prise en charge de XMLTV et de la lecture en transit</description>
