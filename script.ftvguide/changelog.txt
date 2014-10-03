@@ -1,0 +1,27 @@
+1.0.0
+Initial release
+
+1.0.1
+Minor changes
+
+1.0.2
+Minor changes
+
+1.0.3
+Change to source location, thanks to jonc
+
+1.0.4
+New default skin
+Expanded favourites to include non 'PlayMedia' items
+
+1.0.5
+Added source selection, thanks to bluezed
+Added guide downloads, thanks to bluezed
+
+1.0.6
+Added extra source options
+Slight change to default skin
+Removed 'total_seconds' command to avoid Android errors, thanks to bluezed
+
+2.0.0
+New skins 
