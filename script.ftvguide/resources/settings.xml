@@ -4,7 +4,7 @@
 		<setting id="xmltv.type" label="30123" type="enum" default="0" lvalues="30126|30127|30133|30134|30135|30136"/>
 		<setting id="logos.enabled" label="30117" type="bool" default="true" />
         <setting id="xmltv.interval" label="30128" type="enum" default="2" lvalues="30129|30130|30131|30132"/>
-        <setting id="skin" type="labelenum" label="30141" values="Default|Sky" default="Default" />
+        <setting id="skin" type="labelenum" label="30141" values="Default|Sky|Touch" default="Default" />
 	</category>
 	
 	<category label="30114">

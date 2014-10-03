@@ -305,7 +305,7 @@ msgid "You can choose your own .strm file to play, when you want to watch this c
 msgstr ""
 
 msgctxt "#30306"
-msgid "Remove stream file"
+msgid "Remove Stream"
 msgstr ""
 
 msgctxt "#30307"
