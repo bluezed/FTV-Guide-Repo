@@ -24,4 +24,8 @@ Slight change to default skin
 Removed 'total_seconds' command to avoid Android errors, thanks to bluezed
 
 2.0.0
-New skins 
+Re-branding and new skins
+Support for changing skins in the settings
+Setting to switch off channel logos
+addons.ini now also gets downloaded using interval setting
+Database-reset feature (Thanks to Podgod)
