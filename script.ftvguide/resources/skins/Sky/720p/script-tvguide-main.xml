@@ -70,7 +70,7 @@
 			<control type="image" id="4100">
                 <posx>180</posx>
                 <posy>310</posy>
-                <width>-999999999999999999999999</width>
+                <width>-%1000</width>
                 <height>398</height>
                 <texture>tvguide-timebar.png</texture>
             </control>
