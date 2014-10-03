@@ -6,7 +6,7 @@
 		<datadir zip="true">http://github.com/bluezed/FTV-Guide-Repo/raw/master/zips</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>FTV Guide Repo</summary>
+		<summary>FTV Guide Repository</summary>
 		<description>Download and install the FTV Guide addon. For OFFICIAL Support Visit TVADDONS.AG</description>
 		<platform>all</platform>
 	</extension>
