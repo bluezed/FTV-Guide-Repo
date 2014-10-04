@@ -115,13 +115,13 @@ class Generator:
             print("An error occurred saving %s file!\n%s" % ( file, e ))
  
  
-def zipfolder(foldername, target_dir, zips_dir):
-    zipobj = zipfile.ZipFile(zips_dir + foldername, 'w', zipfile.ZIP_DEFLATED)
+def zipfolder(foldername, suffix, target_dir, zips_dir):
+    zipobj = zipfile.ZipFile(zips_dir + foldername + suffix, 'w', zipfile.ZIP_DEFLATED)
     rootlen = len(target_dir) + 1
     for base, dirs, files in os.walk(target_dir):
         for f in files:
             fn = os.path.join(base, f)
-            zipobj.write(fn, os.path.join(foldername[:-4],fn[rootlen:]))
+            zipobj.write(fn, os.path.join(foldername,fn[rootlen:]))
     zipobj.close()
 
 
@@ -159,13 +159,13 @@ if ( __name__ == "__main__" ):
                 ##check if and move addon, changelog, fanart and icon to zipdir                       
                 for y in filesinfoldertozip: 
                     #print('processing file: ' + os.path.join(rootdir,x,y))
-                    if re.search("addon|changelog|icon|fanart", y):
+                    if re.search("addon.xml|changelog|icon|fanart", y):
                         shutil.copyfile(os.path.join(rootdir,x,y), os.path.join(zipsfolder,y))
                         print('Copying %s to %s'  %(y, zipsfolder))                
                 ##check for and zip the folders
                 print('Zipping %s and moving to %s\n' %(x,zipsfolder))
                 try:
-                    zipfolder(zipfilenamefirstpart+version+zipfilenamelastpart, foldertozip, zipsfolder)
+                    zipfolder(zipfilenamefirstpart, version+zipfilenamelastpart, foldertozip, zipsfolder)
                     print('zipped with zipfolder\n')
                 except:
                     if os.path.exists(zipsfolder + x + version + '.zip' ):
