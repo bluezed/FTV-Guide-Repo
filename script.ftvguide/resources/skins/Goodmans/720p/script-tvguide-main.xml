@@ -70,7 +70,7 @@
 			<control type="image" id="4100">
                 <posx>180</posx>
                 <posy>310</posy>
-                <width>-1000%</width>
+                <width>5</width>
                 <height>398</height>
                 <texture>tvguide-timebar.png</texture>
             </control>
@@ -83,6 +83,7 @@
 				<height>455</height>
 				<visible>true</visible>
 				<texture>tvguide-background-left.png</texture>
+				<visible>false</visible>
 			</control>
 			
 			<control type="image">
@@ -93,6 +94,7 @@
 				<height>455</height>
 				<visible>true</visible>
 				<texture>tvguide-background-right.png</texture>
+				<visible>false</visible>
 			</control>
 			
 			<control type="image">
@@ -132,10 +134,10 @@
 				<control type="label" id="3999">
                     <description>Displays todays date</description>
                     <posx>1200</posx>
-                    <posy>200</posy>
+                    <posy>-20</posy>
                     <width>500</width>
                     <height>100</height>
-                    <textcolor>ff6c99ca</textcolor>
+                    <textcolor>ffc00000</textcolor>
                     <font>font13</font>
 					<align>right</align>
                     <aligny>center</aligny>
@@ -143,15 +145,30 @@
 				
 				<control type="label">
                     <description>Displays todays date</description>
-                    <posx>70</posx>
-                    <posy>225</posy>
+                    <posx>80</posx>
+                    <posy>260</posy>
                     <width>180</width>
                     <height>50</height>
-                    <textcolor>ff6c99ca</textcolor>
+                    <textcolor>ffc0c0c0</textcolor>
                     <font>font13</font>
 					<align>left</align>
                     <aligny>center</aligny>
-					<label>TV Guide</label>
+					<label>$INFO[System.Date(" ddd")]$INFO[System.Date(" dd mmm")]</label>
+					<visible>StringCompare(Control.GetLabel(4111),)</visible>
+                </control>
+				
+				<control type="label">
+                    <description>Displays todays date</description>
+                    <posx>110</posx>
+                    <posy>260</posy>
+                    <width>180</width>
+                    <height>50</height>
+                    <textcolor>ffc0c0c0</textcolor>
+                    <font>font13</font>
+					<align>left</align>
+                    <aligny>center</aligny>
+					<label>$INFO[System.Date(" ddd")]$INFO[System.Date(" dd mmm")]</label>
+					<visible>!StringCompare(Control.GetLabel(4111),)</visible>
                 </control>
 				
                 <control type="label" id="4001">
@@ -160,7 +177,7 @@
                     <posy>260</posy>
                     <width>270</width>
                     <height>50</height>
-                    <textcolor>ff6c99ca</textcolor>
+                    <textcolor>ffc0c0c0</textcolor>
                     <font>font13</font>
                     <aligny>center</aligny>
                 </control>
@@ -170,7 +187,7 @@
                     <posy>260</posy>
                     <width>270</width>
                     <height>50</height>
-                    <textcolor>ff6c99ca</textcolor>
+                    <textcolor>ffc0c0c0</textcolor>
                     <font>font13</font>
                     <aligny>center</aligny>
                 </control>
@@ -180,7 +197,7 @@
                     <posy>260</posy>
                     <width>270</width>
                     <height>50</height>
-                    <textcolor>ff6c99ca</textcolor>
+                    <textcolor>ffc0c0c0</textcolor>
                     <font>font13</font>
                     <aligny>center</aligny>
                 </control>
@@ -190,7 +207,7 @@
                     <posy>260</posy>
                     <width>270</width>
                     <height>50</height>
-                    <textcolor>ff6c99ca</textcolor>
+                    <textcolor>ffc0c0c0</textcolor>
                     <font>font13</font>
                     <aligny>center</aligny>
                 </control>
@@ -203,13 +220,106 @@
                 <width>180</width>
                 <height>400</height>
                 <visible>true</visible>
+				
+				<!-- text labels background -->
+				<control type="image">
+                    <description>1st channel</description>
+                    <posx>80</posx>
+                    <posy>200</posy>
+                    <width>197</width>
+                    <height>48</height>
+                    <visible>StringCompare(Control.GetLabel(4110),)</visible>
+					<texture>label-background.png</texture>
+                </control>
+                <control type="image">
+                    <description>2nd channel</description>
+                    <posx>80</posx>
+                    <posy>250</posy>
+                    <width>197</width>
+                    <height>48</height>
+                    <texture>label-background.png</texture>
+                    <visible>StringCompare(Control.GetLabel(4111),)</visible>
+                </control>
+                <control type="image">
+                    <description>3rd channel</description>
+                    <posx>80</posx>
+                    <posy>300</posy>
+                    <width>197</width>
+                    <height>48</height>
+                    <texture>label-background.png</texture>
+                    <visible>StringCompare(Control.GetLabel(4112),)</visible>
+                </control>
+                <control type="image">
+                    <description>4th channel</description>
+                    <posx>80</posx>
+                    <posy>350</posy>
+                    <width>197</width>
+                    <height>48</height>
+                    <texture>label-background.png</texture>
+                    <visible>StringCompare(Control.GetLabel(4113),)</visible>
+                </control>
+                <control type="image">
+                    <description>5th channel</description>
+                    <posx>80</posx>
+                    <posy>400</posy>
+                    <width>197</width>
+                    <height>48</height>
+                    <texture>label-background.png</texture>
+                    <visible>StringCompare(Control.GetLabel(4114),)</visible>
+                </control>
+                <control type="image">
+                    <description>6th channel</description>
+                    <posx>80</posx>
+                    <posy>450</posy>
+                    <width>197</width>
+                    <height>48</height>
+                    <texture>label-background.png</texture>
+                    <visible>StringCompare(Control.GetLabel(4115),)</visible>
+                </control>
+                <control type="image">
+                    <description>7th channel</description>
+                    <posx>80</posx>
+                    <posy>500</posy>
+                    <width>197</width>
+                    <height>48</height>
+                    <texture>label-background.png</texture>
+                    <visible>StringCompare(Control.GetLabel(4116),)</visible>
+                </control>
+                <control type="image">
+                    <description>8th channel</description>
+                    <posx>80</posx>
+                    <posy>550</posy>
+                    <width>197</width>
+                    <height>48</height>
+                    <texture>label-background.png</texture>
+                    <visible>StringCompare(Control.GetLabel(4117),)</visible>
+                </control>
+                <control type="image">
+                    <description>9th channel</description>
+                    <posx>80</posx>
+                    <posy>600</posy>
+                    <width>197</width>
+                    <height>48</height>
+                    <texture>label-background.png</texture>
+					<visible>false</visible>
+                    <visible>StringCompare(Control.GetLabel(4118),)</visible>
+                </control>
+				
+				<control type="image">
+                    <description>1st channel</description>
+                    <posx>1180</posx>
+                    <posy>200</posy>
+                    <width>40</width>
+                    <height>399</height>
+					<texture>label-background.png</texture>
+                </control>
 
                 <!-- text labels -->
                 <control type="label" id="4010">
                     <description>1st channel</description>
                     <posx>90</posx>
                     <posy>200</posy>
-                    <width>190</width>
+                    <width>185</width>
                     <height>50</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
@@ -222,7 +332,7 @@
                     <description>2nd channel</description>
                     <posx>90</posx>
                     <posy>250</posy>
-                    <width>190</width>
+                    <width>185</width>
                     <height>50</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
@@ -234,7 +344,7 @@
                     <description>3rd channel</description>
                     <posx>90</posx>
                     <posy>300</posy>
-                    <width>190</width>
+                    <width>185</width>
                     <height>50</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
@@ -246,7 +356,7 @@
                     <description>4th channel</description>
                     <posx>90</posx>
                     <posy>350</posy>
-                    <width>190</width>
+                    <width>185</width>
                     <height>50</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
@@ -258,7 +368,7 @@
                     <description>5th channel</description>
                     <posx>90</posx>
                     <posy>400</posy>
-                    <width>190</width>
+                    <width>185</width>
                     <height>50</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
@@ -270,7 +380,7 @@
                     <description>6th channel</description>
                     <posx>90</posx>
                     <posy>450</posy>
-                    <width>190</width>
+                    <width>185</width>
                     <height>50</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
@@ -282,7 +392,7 @@
                     <description>7th channel</description>
                     <posx>90</posx>
                     <posy>500</posy>
-                    <width>190</width>
+                    <width>185</width>
                     <height>50</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
@@ -294,7 +404,7 @@
                     <description>8th channel</description>
                     <posx>90</posx>
                     <posy>550</posy>
-                    <width>190</width>
+                    <width>185</width>
                     <height>50</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
@@ -306,7 +416,7 @@
                     <description>9th channel</description>
                     <posx>90</posx>
                     <posy>600</posy>
-                    <width>190</width>
+                    <width>185</width>
                     <height>50</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
@@ -405,7 +515,7 @@
                 <posy>65</posy>
                 <width>630</width>
                 <height>50</height>
-                <textcolor>ff6c99ca</textcolor>
+                <textcolor>ffc00000</textcolor>
                 <font>font13</font>
 				<align>left</align>
                 <aligny>center</aligny>
@@ -422,11 +532,11 @@
             </control>
             <control type="label" id="4021">
                 <description>Program time</description>
-                <posx>15</posx>
+                <posx>30</posx>
                 <posy>65</posy>
                 <width>340</width>
                 <height>50</height>
-                <textcolor>ff6c99ca</textcolor>
+                <textcolor>ffc00000</textcolor>
                 <font>font13</font>
                 <align>left</align>
                 <aligny>center</aligny>
@@ -532,133 +642,129 @@
             </control>
             <control type="group">
                 <posx>0</posx>
-                <posy>720</posy>
+                <posy>0</posy>
                 <width>1280</width>
                 <height>70</height>
-                <visible>!Control.IsVisible(4300)</visible>
-                <animation effect="slide" start="0,0" end="0,-70" time="500">Visible</animation>
-                <animation effect="slide" start="0,-70" end="0,0" time="500">Hidden</animation>
 
                 <control type="image">
-                    <posx>0</posx>
+                    <posx>50</posx>
                     <posy>0</posy>
-                    <width>1280</width>
-                    <height>70</height>
-                    <texture>tvguide-glasspane.png</texture>
-                </control>
-                <control type="image">
-                    <posx>0</posx>
-                    <posy>0</posy>
-                    <width>1280</width>
-                    <height>70</height>
-                    <texture>tvguide-glasspane.png</texture>
+                    <width>1178</width>
+                    <height>36</height>
+                    <texture>tvguide-glasspane-none.png</texture>
                 </control>
                 <control type="label">
-                    <posx>20</posx>
-                    <posy>10</posy>
+                    <posx>965</posx>
+                    <posy>500</posy>
                     <width>300</width>
                     <height>50</height>
-                    <label>$ADDON[script.ftvguide 30005]</label>
+                    <label>Touch Screen Control</label>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
                     <aligny>center</aligny>
+					<visible>false</visible>
                 </control>
                 <control type="label">
-                    <posx>800</posx>
-                    <posy>10</posy>
-                    <width>400</width>
+                    <posx>749</posx>
+                    <posy>-7</posy>
+                    <width>420</width>
                     <height>50</height>
-                    <label>$ADDON[script.ftvguide 30007]</label>
+                    <label>Tip! You can also use the Mouse & Scroll Wheel</label>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
                     <aligny>center</aligny>
+					<visible>false</visible>
                 </control>
 
                 <control type="button" id="4301">
                     <description>navigate to now</description>
-                    <posx>200</posx>
-                    <posy>10</posy>
-                    <width>100</width>
-                    <height>50</height>
-                    <label>$ADDON[script.ftvguide 30006]</label>
+                    <posx>1049</posx>
+                    <posy>579</posy>
+                    <width>55</width>
+                    <height>40</height>
+                    <label></label>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
                     <aligny>center</aligny>
                     <align>center</align>
-                    <texturefocus>tvguide-program-grey-focus.png</texturefocus>
-                    <texturenofocus>tvguide-program-grey.png</texturenofocus>
+                    <texturefocus>tvguide-touch_now_focus.png</texturefocus>
+                    <texturenofocus>tvguide-touch_now.png</texturenofocus>
+					<visible>false</visible>
                 </control>
 
                 <control type="button" id="4302">
                     <description>navigate left</description>
-                    <posx>340</posx>
-                    <posy>10</posy>
-                    <width>100</width>
-                    <height>50</height>
+                    <posx>991</posx>
+                    <posy>579</posy>
+                    <width>55</width>
+                    <height>40</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
-                    <label>&lt;</label>
+                    <label></label>
                     <aligny>center</aligny>
                     <align>center</align>
-                    <texturefocus>tvguide-program-grey-focus.png</texturefocus>
-                    <texturenofocus>tvguide-program-grey.png</texturenofocus>
+                    <texturefocus>tvguide-touch_left_focus.png</texturefocus>
+                    <texturenofocus>tvguide-touch_left.png</texturenofocus>
+					<visible>false</visible>
                 </control>
                 <control type="button" id="4303">
                     <description>navigate up</description>
-                    <posx>450</posx>
-                    <posy>10</posy>
-                    <width>100</width>
-                    <height>50</height>
+                    <posx>1180</posx>
+                    <posy>305</posy>
+                    <width>40</width>
+                    <height>40</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
-                    <label>^</label>
+                    <label></label>
                     <aligny>center</aligny>
                     <align>center</align>
-                    <texturefocus>tvguide-program-grey-focus.png</texturefocus>
-                    <texturenofocus>tvguide-program-grey.png</texturenofocus>
+                    <texturenofocus>tvguide-touch_up.png</texturenofocus>
+					<texturefocus>tvguide-touch_up.png</texturefocus>
                 </control>
                 <control type="button" id="4304">
                     <description>navigate down</description>
-                    <posx>560</posx>
-                    <posy>10</posy>
-                    <width>100</width>
-                    <height>50</height>
+                    <posx>1180</posx>
+                    <posy>675</posy>
+                    <width>40</width>
+                    <height>40</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
-                    <label>v</label>
+                    <label></label>
                     <aligny>center</aligny>
                     <align>center</align>
-                    <texturefocus>tvguide-program-grey-focus.png</texturefocus>
-                    <texturenofocus>tvguide-program-grey.png</texturenofocus>
+                    <texturefocus>tvguide-touch_down.png</texturefocus>
+                    <texturenofocus>tvguide-touch_down.png</texturenofocus>
                 </control>
                 <control type="button" id="4305">
                     <description>navigate right</description>
-                    <posx>670</posx>
-                    <posy>10</posy>
-                    <width>100</width>
-                    <height>50</height>
+                    <posx>1107</posx>
+                    <posy>579</posy>
+                    <width>55</width>
+                    <height>40</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
-                    <label>&gt;</label>
+                    <label></label>
                     <aligny>center</aligny>
                     <align>center</align>
-                    <texturefocus>tvguide-program-grey-focus.png</texturefocus>
-                    <texturenofocus>tvguide-program-grey.png</texturenofocus>
+                    <texturefocus>tvguide-touch_right_focus.png</texturefocus>
+                    <texturenofocus>tvguide-touch_right.png</texturenofocus>
+					<visible>false</visible>
                 </control>
 
                 <control type="button" id="4306">
                     <description>exit</description>
-                    <posx>1220</posx>
-                    <posy>10</posy>
-                    <width>50</width>
-                    <height>50</height>
+                    <posx>1125</posx>
+                    <posy>660</posy>
+                    <width>70</width>
+                    <height>35</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
                     <label>X</label>
                     <aligny>center</aligny>
                     <align>center</align>
-                    <texturefocus>tvguide-program-grey-focus.png</texturefocus>
-                    <texturenofocus>tvguide-program-grey.png</texturenofocus>
+					<texturefocus>menu-grey-focus.png</texturefocus>
+                    <texturenofocus>menu-grey.png</texturenofocus>
+					<visible>false</visible>
                 </control>
 
             </control>
@@ -671,7 +777,7 @@
             <width>1280</width>
             <height>720</height>
             <animation type="Conditional" condition="!Control.IsVisible(5000)">
-                <effect type="zoom" end="25" center="1200,90" time="500" />
+                <effect type="zoom" end="25" center="1200,100" time="500" />
             </animation>
         </control>
 

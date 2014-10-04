@@ -166,7 +166,7 @@ msgstr "FTV (Alle)"
 
 msgctxt "#30127"
 msgid "FTV (Basic)"
-msgstr "FTV (Reduziert)"
+msgstr "FTV (Basis)"
 
 msgctxt "#30128"
 msgid "File download interval"
@@ -181,12 +181,12 @@ msgid "every 12 hrs"
 msgstr "alle 12 Std."
 
 msgctxt "#30131"
-msgid "alle 24 Std."
-msgstr ""
+msgid "every 24 hrs"
+msgstr "alle 24 Std."
 
 msgctxt "#30132"
-msgid "alle 48 Std."
-msgstr ""
+msgid "every 48 hrs"
+msgstr "alle 48 Std."
 
 msgctxt "#30133"
 msgid "UK (Freeview)"
@@ -202,7 +202,7 @@ msgstr "USTVNow"
 
 msgctxt "#30136"
 msgid "US/UK (Basic)"
-msgstr "US/UK (Basic)"
+msgstr "US/UK (Basis)"
 
 msgctxt "#30137"
 msgid "** WARNING! ** Resetting your database will cause you to lose all settings!"
@@ -224,7 +224,11 @@ msgctxt "#30141"
 msgid "Guide Theme"
 msgstr "Design ändern"
 
-#empty strings from id 30142 to 30149
+msgctxt "#30142"
+msgid "Custom File"
+msgstr "Eigene Datei"
+
+#empty strings from id 30143 to 30149
 
 msgctxt "#30150"
 msgid "Oops, sorry about that!"

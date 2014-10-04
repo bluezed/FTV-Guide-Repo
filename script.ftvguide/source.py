@@ -815,6 +815,7 @@ class XMLTVSource(Source):
     TYPE_FTV_UKSKY = 3
     TYPE_FTV_USTV = 4
     TYPE_FTV_USUKBASIC = 5
+    TYPE_CUSTOM = 6
     INTERVAL_ALWAYS = 0
     INTERVAL_12 = 1
     INTERVAL_24 = 2
@@ -837,6 +838,8 @@ class XMLTVSource(Source):
             self.xmltvFile = self.updateLocalFile(XMLTVSource.FTV_USTV)
         elif (self.xmltvType == XMLTVSource.TYPE_FTV_USUKBASIC):
             self.xmltvFile = self.updateLocalFile(XMLTVSource.FTV_USUKBASIC)
+        elif (self.xmltvType == XMLTVSource.TYPE_CUSTOM):
+            self.xmltvFile = str(addon.getSetting('xmltv.file')) # uses local file provided by user!
 
         # make sure the ini file is fetched as well if necessary
         self.updateLocalFile(XMLTVSource.INI_FILE)

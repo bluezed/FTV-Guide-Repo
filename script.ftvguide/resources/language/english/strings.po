@@ -226,7 +226,11 @@ msgctxt "#30141"
 msgid "Guide Theme"
 msgstr ""
 
-#empty strings from id 30142 to 30149
+msgctxt "#30142"
+msgid "Custom File"
+msgstr ""
+
+#empty strings from id 30143 to 30149
 
 msgctxt "#30150"
 msgid "Oops, sorry about that!"
