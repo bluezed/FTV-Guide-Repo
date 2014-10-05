@@ -2,6 +2,9 @@
 #      Copyright (C) 2014 Tommy Winther
 #      http://tommy.winther.nu
 #
+#      Modified for FTV Guide (09/2014 onwards)
+#      by Thomas Geppert [bluezed] - bluezed.apps@gmail.com
+#
 #  This Program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
 #  the Free Software Foundation; either version 2, or (at your option)
@@ -130,7 +133,7 @@ class TVGuide(xbmcgui.WindowXML):
         self.channelIdx = 0
         self.focusPoint = Point()
         self.epgView = EPGView()
-        self.streamingService = streaming.StreamsService()
+        self.streamingService = streaming.StreamsService(ADDON)
         self.player = xbmc.Player()
         self.database = None
 
@@ -1179,7 +1182,7 @@ class StreamSetupDialog(xbmcgui.WindowXMLDialog):
         self.player = xbmc.Player()
         self.previousAddonId = None
         self.strmFile = None
-        self.streamingService = streaming.StreamsService()
+        self.streamingService = streaming.StreamsService(ADDON)
 
     def close(self):
         if self.player.isPlaying():

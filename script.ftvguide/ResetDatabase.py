@@ -1,6 +1,9 @@
 #
 # Copyright (C) 2014 Sean Poyser and Richard Dean (write2dixie@gmail.com)
 #
+#      Modified for FTV Guide (09/2014 onwards)
+#      by Thomas Geppert [bluezed] - bluezed.apps@gmail.com
+#
 # This Program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2, or (at your option)

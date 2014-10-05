@@ -2,6 +2,9 @@
 #      Copyright (C) 2013 Tommy Winther
 #      http://tommy.winther.nu
 #
+#      Modified for FTV Guide (09/2014 onwards)
+#      by Thomas Geppert [bluezed] - bluezed.apps@gmail.com
+#
 #  This Program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
 #  the Free Software Foundation; either version 2, or (at your option)
@@ -808,6 +811,8 @@ class XMLTVSource(Source):
     FTV_USUKBASIC = 'guide_usukbasic.xmltv'
     FTV_URL = 'http://remoteman.tv/ftv/'
     KEY = 'xmltv'
+    INI_TYPE_FTV = 0
+    INI_TYPE_CUSTOM = 1
     INI_FILE = 'addons.ini'
     TYPE_FTV_ALL = 0
     TYPE_FTV_BASIC = 1
@@ -820,11 +825,19 @@ class XMLTVSource(Source):
     INTERVAL_12 = 1
     INTERVAL_24 = 2
     INTERVAL_48 = 3
+    LOGO_SOURCE_FTV = 0
+    LOGO_SOURCE_CUSTOM = 1
 
     def __init__(self, addon):
-        self.logoFolder = XMLTVSource.FTV_URL + 'logos/'
         self.xmltvType = int(addon.getSetting('xmltv.type'))
         self.xmltvInterval = int(addon.getSetting('xmltv.interval'))
+        self.addonsType = int(addon.getSetting('addons.ini.type'))
+        self.logoSource = int(addon.getSetting('logos.source'))
+
+        if (self.logoSource == XMLTVSource.LOGO_SOURCE_FTV):
+            self.logoFolder = XMLTVSource.FTV_URL + 'logos/'
+        else:
+            self.logoFolder = str(addon.getSetting('logos.folder'))
 
         if (self.xmltvType == XMLTVSource.TYPE_FTV_ALL):
             self.xmltvFile = self.updateLocalFile(XMLTVSource.FTV_ALL)
@@ -842,7 +855,8 @@ class XMLTVSource(Source):
             self.xmltvFile = str(addon.getSetting('xmltv.file')) # uses local file provided by user!
 
         # make sure the ini file is fetched as well if necessary
-        self.updateLocalFile(XMLTVSource.INI_FILE)
+        if (self.addonsType == XMLTVSource.INI_TYPE_FTV):
+            self.updateLocalFile(XMLTVSource.INI_FILE)
 
         if not self.xmltvFile or not xbmcvfs.exists(self.xmltvFile):
             raise SourceNotConfiguredException()
@@ -945,12 +959,11 @@ class XMLTVSource(Source):
                     title = elem.findtext("display-name")
                     logo = None
                     if logoFolder:
-                        logo = os.path.join(logoFolder, title + '.png')
-                        logo = logo.replace(' ', '%20')
-                    if not logo:
-                        iconElement = elem.find("icon")
-                        if iconElement is not None:
-                            logo = iconElement.get("src")
+                        logoFile = os.path.join(logoFolder, title + '.png')
+                        if (self.logoSource == XMLTVSource.LOGO_SOURCE_FTV):
+                            logo = logoFile.replace(' ', '%20') # needed due to fetching from a server!
+                        elif xbmcvfs.exists(logoFile):
+                            logo = logoFile # local file instead of remote!
                     streamElement = elem.find("stream")
                     streamUrl = None
                     if streamElement is not None:

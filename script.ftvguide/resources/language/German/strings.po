@@ -1,7 +1,7 @@
 # XBMC Media Center language file
 # Addon Name: FTV Guide
 # Addon id: script.ftvguide
-# Addon Provider: twinther
+# Addon Provider: rayw1986, bluezed
 msgid ""
 msgstr ""
 "Project-Id-Version: XBMC Addons\n"
@@ -228,7 +228,27 @@ msgctxt "#30142"
 msgid "Custom File"
 msgstr "Eigene Datei"
 
-#empty strings from id 30143 to 30149
+msgctxt "#30143"
+msgid "FTV Guide"
+msgstr "FTV Guide"
+
+msgctxt "#30144"
+msgid "addons.ini selection"
+msgstr "addons.ini wählen"
+
+msgctxt "#30145"
+msgid "addons.ini file"
+msgstr "addons.ini Datei"
+
+msgctxt "#30146"
+msgid "Logo source"
+msgstr "Logo-Quelle"
+
+msgctxt "#30147"
+msgid "Custom Folder"
+msgstr "Eigener Ordner"
+
+#empty strings from id 30148 to 30149
 
 msgctxt "#30150"
 msgid "Oops, sorry about that!"

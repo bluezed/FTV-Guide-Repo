@@ -2,6 +2,9 @@
 #      Copyright (C) 2014 Tommy Winther
 #      http://tommy.winther.nu
 #
+#      Modified for FTV Guide (09/2014 onwards)
+#      by Thomas Geppert [bluezed] - bluezed.apps@gmail.com
+#
 #  This Program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
 #  the Free Software Foundation; either version 2, or (at your option)
@@ -25,8 +28,11 @@ import xbmcaddon
 
 
 class StreamsService(object):
-    def __init__(self):
-        path = xbmc.translatePath(os.path.join("special://profile/addon_data","script.ftvguide",'addons.ini'))
+    def __init__(self, addon):
+        if (int(addon.getSetting('addons.ini.type')) == 0):
+            path = xbmc.translatePath(os.path.join("special://profile/addon_data","script.ftvguide",'addons.ini'))
+        else:
+            path = str(addon.getSetting('addons.ini.file'))
 
         self.addonsParser = ConfigParser.ConfigParser(dict_type=OrderedDict)
         self.addonsParser.optionxform = lambda option: option

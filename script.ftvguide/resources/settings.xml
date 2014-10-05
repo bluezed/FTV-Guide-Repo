@@ -5,7 +5,13 @@
         <setting id="xmltv.interval" label="30128" type="enum" default="2" lvalues="30129|30130|30131|30132" visible="lt(-1,6)" />
         <setting id="xmltv.file" label="30103" type="file" visible="eq(-2,6)" />
 
+        <setting id="addons.ini.type" label="30144" type="enum" default="0" lvalues="30143|30142"/>
+        <setting id="addons.ini.file" label="30145" type="file" visible="eq(-1,1)" />
+
         <setting id="logos.enabled" label="30117" type="bool" default="true" />
+        <setting id="logos.source" label="30146" type="enum" default="0" lvalues="30143|30147" visible="eq(-1,true)" />
+        <setting id="logos.folder" label="30116" type="folder" visible="eq(-2,true) + eq(-1,1)" />
+
         <setting id="skin" label="30141" type="fileenum" values="resources/skins" mask="/" default="Default" />
 	</category>
 	
