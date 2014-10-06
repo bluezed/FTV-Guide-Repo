@@ -133,7 +133,7 @@ class TVGuide(xbmcgui.WindowXML):
         self.channelIdx = 0
         self.focusPoint = Point()
         self.epgView = EPGView()
-        self.streamingService = streaming.StreamsService(ADDON)
+        self.streamingService = streaming.StreamsService()
         self.player = xbmc.Player()
         self.database = None
 
@@ -1182,7 +1182,7 @@ class StreamSetupDialog(xbmcgui.WindowXMLDialog):
         self.player = xbmc.Player()
         self.previousAddonId = None
         self.strmFile = None
-        self.streamingService = streaming.StreamsService(ADDON)
+        self.streamingService = streaming.StreamsService()
 
     def close(self):
         if self.player.isPlaying():

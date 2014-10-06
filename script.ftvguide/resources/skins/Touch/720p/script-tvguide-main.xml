@@ -584,7 +584,7 @@
 					<visible>false</visible>
                 </control>
 
-                <control type="button" id="4301">
+                <control type="button" id="4001">
                     <description>navigate to now</description>
                     <posx>1049</posx>
                     <posy>579</posy>

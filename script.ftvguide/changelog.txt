@@ -1,7 +1,7 @@
 --------------------------
 FTV Guide - 2.0.3
 --------------------------
-+ Support for custom local addons.ini file
++ Even more skins
 + Support for local Channel logos folder (requires database reset!)
 + updated all headers to comply with the licence
 

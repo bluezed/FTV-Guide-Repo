@@ -248,7 +248,11 @@ msgctxt "#30147"
 msgid "Custom Folder"
 msgstr "Eigener Ordner"
 
-#empty strings from id 30148 to 30149
+msgctxt "#30148"
+msgid "Appearance"
+msgstr "Darstellung"
+
+#empty strings from id 30149 to 30149
 
 msgctxt "#30150"
 msgid "Oops, sorry about that!"

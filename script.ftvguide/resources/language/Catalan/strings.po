@@ -1,7 +1,7 @@
 # XBMC Media Center language file
 # Addon Name: FTV Guide
 # Addon id: script.ftvguide
-# Addon Provider: rayw1986, bluezed
+# Addon Provider: twinther
 msgid ""
 msgstr ""
 "Project-Id-Version: XBMC Addons\n"

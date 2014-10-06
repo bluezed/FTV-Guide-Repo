@@ -304,15 +304,6 @@
 					<visible>false</visible>
                     <visible>StringCompare(Control.GetLabel(4118),)</visible>
                 </control>
-				
-				<control type="image">
-                    <description>1st channel</description>
-                    <posx>1180</posx>
-                    <posy>200</posy>
-                    <width>40</width>
-                    <height>399</height>
-					<texture>label-background.png</texture>
-                </control>
 
                 <!-- text labels -->
                 <control type="label" id="4010">
@@ -642,132 +633,135 @@
             </control>
             <control type="group">
                 <posx>0</posx>
-                <posy>0</posy>
+                <posy>720</posy>
                 <width>1280</width>
                 <height>70</height>
+                <visible>!Control.IsVisible(4300)</visible>
+                <animation effect="slide" start="0,0" end="0,-70" time="500">Visible</animation>
+                <animation effect="slide" start="0,-70" end="0,0" time="500">Hidden</animation>
 
                 <control type="image">
-                    <posx>50</posx>
+                    <posx>0</posx>
                     <posy>0</posy>
-                    <width>1178</width>
-                    <height>36</height>
-                    <texture>tvguide-glasspane-none.png</texture>
+                    <width>1280</width>
+                    <height>70</height>
+                    <texture>tvguide-glasspane.png</texture>
+                </control>
+                <control type="image">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>1280</width>
+                    <height>70</height>
+                    <texture>tvguide-glasspane.png</texture>
                 </control>
                 <control type="label">
-                    <posx>965</posx>
-                    <posy>500</posy>
+                    <posx>20</posx>
+                    <posy>10</posy>
                     <width>300</width>
                     <height>50</height>
-                    <label>Touch Screen Control</label>
+                    <label>$ADDON[script.ftvguide 30005]</label>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
                     <aligny>center</aligny>
-					<visible>false</visible>
                 </control>
                 <control type="label">
-                    <posx>749</posx>
-                    <posy>-7</posy>
-                    <width>420</width>
+                    <posx>800</posx>
+                    <posy>10</posy>
+                    <width>400</width>
                     <height>50</height>
-                    <label>Tip! You can also use the Mouse & Scroll Wheel</label>
+                    <label>$ADDON[script.ftvguide 30007]</label>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
                     <aligny>center</aligny>
-					<visible>false</visible>
                 </control>
 
                 <control type="button" id="4301">
                     <description>navigate to now</description>
-                    <posx>1049</posx>
-                    <posy>579</posy>
-                    <width>55</width>
-                    <height>40</height>
-                    <label></label>
+                    <posx>200</posx>
+                    <posy>10</posy>
+                    <width>100</width>
+                    <height>50</height>
+                    <label>$ADDON[script.ftvguide 30006]</label>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
                     <aligny>center</aligny>
                     <align>center</align>
-                    <texturefocus>tvguide-touch_now_focus.png</texturefocus>
-                    <texturenofocus>tvguide-touch_now.png</texturenofocus>
-					<visible>false</visible>
+                    <texturefocus>tvguide-program-grey-focus.png</texturefocus>
+                    <texturenofocus>tvguide-program-grey.png</texturenofocus>
                 </control>
 
                 <control type="button" id="4302">
                     <description>navigate left</description>
-                    <posx>991</posx>
-                    <posy>579</posy>
-                    <width>55</width>
-                    <height>40</height>
+                    <posx>340</posx>
+                    <posy>10</posy>
+                    <width>100</width>
+                    <height>50</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
-                    <label></label>
+                    <label>&lt;</label>
                     <aligny>center</aligny>
                     <align>center</align>
-                    <texturefocus>tvguide-touch_left_focus.png</texturefocus>
-                    <texturenofocus>tvguide-touch_left.png</texturenofocus>
-					<visible>false</visible>
+                    <texturefocus>tvguide-program-grey-focus.png</texturefocus>
+                    <texturenofocus>tvguide-program-grey.png</texturenofocus>
                 </control>
                 <control type="button" id="4303">
                     <description>navigate up</description>
-                    <posx>1180</posx>
-                    <posy>305</posy>
-                    <width>40</width>
-                    <height>40</height>
+                    <posx>450</posx>
+                    <posy>10</posy>
+                    <width>100</width>
+                    <height>50</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
-                    <label></label>
+                    <label>^</label>
                     <aligny>center</aligny>
                     <align>center</align>
-                    <texturenofocus>tvguide-touch_up.png</texturenofocus>
-					<texturefocus>tvguide-touch_up.png</texturefocus>
+                    <texturefocus>tvguide-program-grey-focus.png</texturefocus>
+                    <texturenofocus>tvguide-program-grey.png</texturenofocus>
                 </control>
                 <control type="button" id="4304">
                     <description>navigate down</description>
-                    <posx>1180</posx>
-                    <posy>675</posy>
-                    <width>40</width>
-                    <height>40</height>
+                    <posx>560</posx>
+                    <posy>10</posy>
+                    <width>100</width>
+                    <height>50</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
-                    <label></label>
+                    <label>v</label>
                     <aligny>center</aligny>
                     <align>center</align>
-                    <texturefocus>tvguide-touch_down.png</texturefocus>
-                    <texturenofocus>tvguide-touch_down.png</texturenofocus>
+                    <texturefocus>tvguide-program-grey-focus.png</texturefocus>
+                    <texturenofocus>tvguide-program-grey.png</texturenofocus>
                 </control>
                 <control type="button" id="4305">
                     <description>navigate right</description>
-                    <posx>1107</posx>
-                    <posy>579</posy>
-                    <width>55</width>
-                    <height>40</height>
+                    <posx>670</posx>
+                    <posy>10</posy>
+                    <width>100</width>
+                    <height>50</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
-                    <label></label>
+                    <label>&gt;</label>
                     <aligny>center</aligny>
                     <align>center</align>
-                    <texturefocus>tvguide-touch_right_focus.png</texturefocus>
-                    <texturenofocus>tvguide-touch_right.png</texturenofocus>
-					<visible>false</visible>
+                    <texturefocus>tvguide-program-grey-focus.png</texturefocus>
+                    <texturenofocus>tvguide-program-grey.png</texturenofocus>
                 </control>
 
                 <control type="button" id="4306">
                     <description>exit</description>
-                    <posx>1125</posx>
-                    <posy>660</posy>
-                    <width>70</width>
-                    <height>35</height>
+                    <posx>1220</posx>
+                    <posy>10</posy>
+                    <width>50</width>
+                    <height>50</height>
                     <textcolor>ffffffff</textcolor>
                     <font>font13</font>
                     <label>X</label>
                     <aligny>center</aligny>
                     <align>center</align>
-					<texturefocus>menu-grey-focus.png</texturefocus>
-                    <texturenofocus>menu-grey.png</texturenofocus>
-					<visible>false</visible>
+                    <texturefocus>tvguide-program-grey-focus.png</texturefocus>
+                    <texturenofocus>tvguide-program-grey.png</texturenofocus>
                 </control>
-
-            </control>
+			</control>
 
         </control><!-- id="5000" -->
 
