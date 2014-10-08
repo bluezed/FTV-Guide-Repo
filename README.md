@@ -22,7 +22,7 @@ Here are the basic steps to install the FTV Guide on your Kodi/XBMC box.
 2. Select the Zip file you downloaded earlier. This should install the FTV Guide Repository on your box.
  ![](http://s19.postimg.org/kj67t8q5f/step02.png)
 
-3. Now go to "Get Add-ons" 
+3. Now go to "Get Add-ons"                                                                     
  ![](http://s19.postimg.org/qmsdqw5sz/step03.png)
 
 4. Select the "FTV Guide Repository"
