@@ -20,7 +20,6 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 #
-import StringIO
 import os
 import threading
 import datetime
@@ -308,6 +307,17 @@ class Database(object):
         sqlite3.register_adapter(datetime.datetime, self.adapt_datetime)
         sqlite3.register_converter('timestamp', self.convert_datetime)
 
+        # if the xmltv data needs to be loaded the database
+        # should be reset to avoid ghosting!
+        if self.source.needReset:
+            self.updateInProgress = True
+            c = self.conn.cursor()
+            c.execute("DELETE FROM updates")
+            c.execute("UPDATE sources SET channels_updated=0")
+            self.conn.commit()
+            c.close()
+            self.updateInProgress = False
+            self.source.needReset = False
         if not self._isCacheExpired(date):
             return
 
@@ -827,6 +837,7 @@ class XMLTVSource(Source):
     LOGO_SOURCE_CUSTOM = 1
 
     def __init__(self, addon):
+        self.needReset = False
         self.xmltvType = int(addon.getSetting('xmltv.type'))
         self.xmltvInterval = int(addon.getSetting('xmltv.interval'))
         self.logoSource = int(addon.getSetting('logos.source'))
@@ -880,6 +891,9 @@ class XMLTVSource(Source):
             f = open(path,'wb')
             f.write(urllib2.urlopen(XMLTVSource.FTV_URL + name).read())
             f.close()
+
+            if (name <> XMLTVSource.INI_FILE):
+                self.needReset = True
         else:
             xbmc.log('[script.tvguide] Remote file fetching not due yet...', xbmc.LOGDEBUG)
         return path
