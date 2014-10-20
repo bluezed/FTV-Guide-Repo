@@ -812,7 +812,7 @@ class Source(object):
 
 
 class XMLTVSource(Source):
-    PLUGIN_DATA = xbmc.translatePath(os.path.join("special://profile/addon_data","script.ftvguide"))
+    PLUGIN_DATA = xbmc.translatePath(os.path.join('special://profile', 'addon_data', 'script.ftvguide'))
     FTV_BASIC = 'guide_basic.xmltv'
     FTV_ALL = 'guide.xmltv'
     FTV_UKBASIC = 'guide_ukbasic.xmltv'
@@ -821,6 +821,8 @@ class XMLTVSource(Source):
     FTV_USUKBASIC = 'guide_usukbasic.xmltv'
     FTV_URL = 'http://remoteman.tv/ftv/'
     KEY = 'xmltv'
+    INI_TYPE_FTV = 0
+    INI_TYPE_CUSTOM = 1
     INI_FILE = 'addons.ini'
     TYPE_FTV_ALL = 0
     TYPE_FTV_BASIC = 1
@@ -841,6 +843,7 @@ class XMLTVSource(Source):
         self.xmltvType = int(addon.getSetting('xmltv.type'))
         self.xmltvInterval = int(addon.getSetting('xmltv.interval'))
         self.logoSource = int(addon.getSetting('logos.source'))
+        self.addonsType = int(addon.getSetting('addons.ini.type'))
 
         if (self.logoSource == XMLTVSource.LOGO_SOURCE_FTV):
             self.logoFolder = XMLTVSource.FTV_URL + 'logos/'
@@ -863,7 +866,8 @@ class XMLTVSource(Source):
             self.xmltvFile = str(addon.getSetting('xmltv.file')) # uses local file provided by user!
 
         # make sure the ini file is fetched as well if necessary
-        self.updateLocalFile(XMLTVSource.INI_FILE)
+        if (self.addonsType == XMLTVSource.INI_TYPE_FTV):
+            self.updateLocalFile(XMLTVSource.INI_FILE)
 
         if not self.xmltvFile or not xbmcvfs.exists(self.xmltvFile):
             raise SourceNotConfiguredException()

@@ -1,4 +1,10 @@
 --------------------------
+FTV Guide - 2.0.5
+--------------------------
++ Support for custom local addons.ini file
++ Favourites now get loaded from user profile, not always MASTER
+
+--------------------------
 FTV Guide - 2.0.4
 --------------------------
 + Fix for ghosting issue
