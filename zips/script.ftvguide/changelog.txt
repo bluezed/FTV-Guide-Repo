@@ -1,6 +1,11 @@
 --------------------------
 FTV Guide - 2.0.5
 --------------------------
++ Bugfix - folder in profile now created automatically
+
+--------------------------
+FTV Guide - 2.0.5
+--------------------------
 + Support for custom local addons.ini file
 + Favourites now get loaded from user profile, not always MASTER
 

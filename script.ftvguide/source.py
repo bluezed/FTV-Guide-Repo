@@ -845,6 +845,10 @@ class XMLTVSource(Source):
         self.logoSource = int(addon.getSetting('logos.source'))
         self.addonsType = int(addon.getSetting('addons.ini.type'))
 
+        # make sure the folder in the user's profile exists or create it!
+        if not os.path.exists(XMLTVSource.PLUGIN_DATA):
+            os.makedirs(XMLTVSource.PLUGIN_DATA)
+
         if (self.logoSource == XMLTVSource.LOGO_SOURCE_FTV):
             self.logoFolder = XMLTVSource.FTV_URL + 'logos/'
         else:
