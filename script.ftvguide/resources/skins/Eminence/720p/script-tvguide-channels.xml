@@ -116,7 +116,7 @@
             <aligny>top</aligny>
 			<wrapmultiline>true</wrapmultiline>
 			<autoscroll time="3600" delay="6000" repeat="6000">true</autoscroll>
-			<label>Press left to pull a channel out, then move it up or down. When in place, press right again to set. Pressing on a channel in the list will enable or disable it.</label>
+			<label>$ADDON[script.ftvguide 30501]</label>
         </control>
         <control type="fixedlist" id="6000">
             <posx>600</posx>

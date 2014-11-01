@@ -267,7 +267,7 @@ class TVGuide(xbmcgui.WindowXML):
                 self._showOsd()
 
     def onActionEPGMode(self, action):
-        if action.getId() in [ACTION_PARENT_DIR, KEY_NAV_BACK, ACTION_PREVIOUS_MENU]:
+        if action.getId() in [ACTION_PARENT_DIR, KEY_NAV_BACK]:
             self.close()
             return
 
@@ -321,10 +321,12 @@ class TVGuide(xbmcgui.WindowXML):
             self.viewStartDate -= datetime.timedelta(minutes=self.viewStartDate.minute % 30,
                                                      seconds=self.viewStartDate.second)
             self.onRedrawEPG(self.channelIdx, self.viewStartDate)
-        elif action.getId() in [KEY_CONTEXT_MENU] and controlInFocus is not None:
+        elif action.getId() in [KEY_CONTEXT_MENU, ACTION_PREVIOUS_MENU] and controlInFocus is not None:
             program = self._getProgramFromControl(controlInFocus)
             if program is not None:
                 self._showContextMenu(program)
+        else:
+            xbmc.log('[script.ftvguide] Unhandled ActionId: ' + str(action.getId()), xbmc.LOGDEBUG)
 
     def onClick(self, controlId):
         if controlId in [self.C_MAIN_LOADING_CANCEL, self.C_MAIN_MOUSE_EXIT]:
@@ -1036,19 +1038,22 @@ class ChannelsMenu(xbmcgui.WindowXMLDialog):
         self.database = database
         self.channelList = database.getChannelList(onlyVisible=False)
         self.swapInProgress = False
+        
+        self.selectedChannel = 0
 
     def onInit(self):
         self.updateChannelList()
         self.setFocusId(self.C_CHANNELS_LIST)
 
     def onAction(self, action):
-        if action.getId() in [ACTION_PARENT_DIR, ACTION_PREVIOUS_MENU, KEY_NAV_BACK, KEY_CONTEXT_MENU]:
+        if action.getId() in [ACTION_PARENT_DIR, KEY_NAV_BACK]:
             self.close()
             return
 
-        if self.getFocusId() == self.C_CHANNELS_LIST and action.getId() == ACTION_LEFT:
+        if self.getFocusId() == self.C_CHANNELS_LIST and action.getId() in [ACTION_PREVIOUS_MENU, KEY_CONTEXT_MENU, ACTION_LEFT]:
             listControl = self.getControl(self.C_CHANNELS_LIST)
             idx = listControl.getSelectedPosition()
+            self.selectedChannel = idx
             buttonControl = self.getControl(self.C_CHANNELS_SELECTION)
             buttonControl.setLabel('[B]%s[/B]' % self.channelList[idx].title)
 
@@ -1056,6 +1061,14 @@ class ChannelsMenu(xbmcgui.WindowXMLDialog):
             self.setFocusId(self.C_CHANNELS_SELECTION)
 
         elif self.getFocusId() == self.C_CHANNELS_SELECTION and action.getId() in [ACTION_RIGHT, ACTION_SELECT_ITEM]:
+            self.getControl(self.C_CHANNELS_SELECTION_VISIBLE).setVisible(True)
+            xbmc.sleep(350)
+            self.setFocusId(self.C_CHANNELS_LIST)
+            
+        elif self.getFocusId() == self.C_CHANNELS_SELECTION and action.getId() in [ACTION_PREVIOUS_MENU, KEY_CONTEXT_MENU]:
+            listControl = self.getControl(self.C_CHANNELS_LIST)
+            idx = listControl.getSelectedPosition()
+            self.swapChannels(self.selectedChannel, idx)
             self.getControl(self.C_CHANNELS_SELECTION_VISIBLE).setVisible(True)
             xbmc.sleep(350)
             self.setFocusId(self.C_CHANNELS_LIST)
@@ -1138,7 +1151,6 @@ class ChannelsMenu(xbmcgui.WindowXMLDialog):
         listControl.selectItem(toIdx)
         xbmc.sleep(50)
         self.swapInProgress = False
-
 
 class StreamSetupDialog(xbmcgui.WindowXMLDialog):
     C_STREAM_STRM_TAB = 101

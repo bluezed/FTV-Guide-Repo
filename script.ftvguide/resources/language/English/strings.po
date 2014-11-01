@@ -351,7 +351,7 @@ msgid "[B]Edit channel order and visibility[/B]"
 msgstr ""
 
 msgctxt "#30501"
-msgid "Move up and down to change the position of[CR]the channel. Select or navigate left to accept[CR]the position."
+msgid "Press left to pull a channel out, then move it up or down. When in place, press right again to set. Pressing on a channel in the list will enable or disable it.[CR]On touch devices long press on a channel to pull it out, move the list to the desired place and then long press on the pulled out channel to put it in its new place."
 msgstr ""
 
 msgctxt "#30502"
