@@ -59,6 +59,7 @@ ACTION_MOUSE_MOVE = 107
 KEY_NAV_BACK = 92
 KEY_CONTEXT_MENU = 117
 KEY_HOME = 159
+KEY_ESC = 61467
 
 CHANNELS_PER_PAGE = 8
 
@@ -268,6 +269,11 @@ class TVGuide(xbmcgui.WindowXML):
 
     def onActionEPGMode(self, action):
         if action.getId() in [ACTION_PARENT_DIR, KEY_NAV_BACK]:
+            self.close()
+            return
+
+        # catch the ESC key
+        elif action.getId() == ACTION_PREVIOUS_MENU and action.getButtonCode() == KEY_ESC:
             self.close()
             return
 

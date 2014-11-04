@@ -922,34 +922,48 @@ class XMLTVSource(Source):
         fileUpdated = datetime.datetime.fromtimestamp(stat.st_mtime())
         return fileUpdated > channelsLastUpdated
 
-    def parseXMLTVDate(self, dateString):
-        if dateString is not None:
-            if dateString.find(' ') != -1:
-                # remove timezone information
-                dateString = dateString[:dateString.find(' ')]
-            t = time.strptime(dateString, '%Y%m%d%H%M%S')
-            dt = datetime.datetime(t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
-
-            dt1 = datetime.datetime.utcnow() + datetime.timedelta(hours = 0)
-            dt2 = datetime.datetime.now()
-
-            d = datetime.datetime(dt1.year, 4, 1)
-            dston = d - datetime.timedelta(days=d.weekday() + 1)
-            d = datetime.datetime(dt1.year, 11, 1)
-            dstoff = d - datetime.timedelta(days=d.weekday() + 1)
-            if dston <=  dt1 < dstoff:
-                dt1 = dt1 + datetime.timedelta(hours = 1)
+    def parseXMLTVDate(self, origDateString):
+        if origDateString.find(' ') != -1:
+            # get timezone information
+            dateParts = origDateString.split()
+            if len(dateParts) == 2:
+                dateString = dateParts[0]
+                offset = dateParts[1]
+                if len(offset) == 5:
+                    offSign = offset[0]
+                    offHrs = int(offset[1:3])
+                    offMins = int(offset[-2:])
+                    td = datetime.timedelta(minutes=offMins, hours=offHrs)
+                else:
+                    td = datetime.timedelta(seconds=0)
+            elif len(dateParts) == 1:
+                dateString = dateParts[0]
+                td = datetime.timedelta(seconds=0)
             else:
-                dt1 = dt1
+                return None
 
-            if dt2 >= dt1:
-                dtd = (dt2 - dt1).seconds/60/60
-                dt = dt + datetime.timedelta(hours = int(dtd))
+            # normalize the given time to UTC by applying the timedelta provided in the timestamp
+            xbmc.log('[script.ftvguide] Date to normalize: ' + dateString, xbmc.LOGDEBUG)
+            try:
+                t_tmp = datetime.datetime.strptime(dateString, '%Y%m%d%H%M%S')
+            except TypeError:
+                t_tmp = datetime.datetime.fromtimestamp(time.mktime(time.strptime(dateString, '%Y%m%d%H%M%S')))
+            if offSign == '+':
+                t = t_tmp - td
+            elif offSign == '-':
+                t = t_tmp + td
             else:
-                dtd = (dt1 - dt2).seconds/60/60
-                dt = dt - datetime.timedelta(hours = int(dtd))
+                t = t_tmp
 
-            return dt
+            # get the local timezone offset in seconds
+            is_dst = time.daylight and time.localtime().tm_isdst > 0
+            utc_offset = - (time.altzone if is_dst else time.timezone)
+            td_local = datetime.timedelta(seconds=utc_offset)
+
+            t = t + td_local
+            xbmc.log('[script.ftvguide] Import Time adjusted from: ' + str(t_tmp) + ' to: ' + str(t), xbmc.LOGDEBUG)
+            return t
+
         else:
             return None
 

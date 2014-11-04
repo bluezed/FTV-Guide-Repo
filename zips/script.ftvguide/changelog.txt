@@ -1,4 +1,10 @@
 --------------------------
+FTV Guide - 2.0.8
+--------------------------
++ Bugfix - [ESC] key not working correctly
++ Enhancement - Improved timezones handling
+
+--------------------------
 FTV Guide - 2.0.7
 --------------------------
 + Bugfix - touch devices cannot open context menu
