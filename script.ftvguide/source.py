@@ -819,7 +819,7 @@ class XMLTVSource(Source):
     FTV_UKSKY = 'guide_uksky.xmltv'
     FTV_USTV = 'guide_ustvnow.xmltv'
     FTV_USUKBASIC = 'guide_usukbasic.xmltv'
-    FTV_URL = 'http://remoteman.tv/ftv/'
+    FTV_URL = 'http://thaisatellite.tv/ftv/'
     KEY = 'xmltv'
     INI_TYPE_FTV = 0
     INI_TYPE_CUSTOM = 1

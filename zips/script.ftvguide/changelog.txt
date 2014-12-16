@@ -1,4 +1,9 @@
 --------------------------
+FTV Guide - 2.0.9
+--------------------------
++ Updated Eminence Skin
+
+--------------------------
 FTV Guide - 2.0.8
 --------------------------
 + Bugfix - [ESC] key not working correctly

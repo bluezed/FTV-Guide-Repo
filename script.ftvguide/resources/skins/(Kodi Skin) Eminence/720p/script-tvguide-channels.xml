@@ -14,23 +14,24 @@
 
 
         <control type="image">
-            <posx>150</posx>
-            <posy>100</posy>
-            <width>1010</width>
-            <height>510</height>
-            <texture>menu-stream.png</texture>
+            <posx>0</posx>
+            <posy>150</posy>
+            <width>100%</width>
+            <height>100%</height>
+            <texture>tvguide-background-default.jpg</texture>
         </control>
-        <control type="image">
-            <posx>150</posx>
-            <posy>100</posy>
-            <width>1010</width>
-            <height>510</height>
-            <texture>menu-stream.png</texture>
+		
+		<control type="image">
+            <posx>156</posx>
+            <posy>207</posy>
+            <width>1000</width>
+            <height>400</height>
+            <texture>desc-bg.png</texture>
         </control>
 
         <control type="group">
             <posx>200</posx>
-            <posy>431</posy>
+            <posy>449</posy>
             <width>560</width>
             <height>38</height>
             <visible>!Control.IsVisible(6001)</visible>
@@ -75,7 +76,7 @@
                 <width>360</width>
                 <height>38</height>
                 <aligny>center</aligny>
-                <font>font13</font>
+                <font>Font-ListInfo-Small</font>
                 <textcolor>ffffffff</textcolor>
                 <label>text</label>
                 <texturefocus>tvguide-program-grey-focus.png</texturefocus>
@@ -86,7 +87,7 @@
                 <posy>70</posy>
                 <width>410</width>
                 <height>60</height>
-                <font>font13</font>
+                <font>Font-ListInfo-Small</font>
                 <textcolor>ffffffff</textcolor>
 				<visible>false</visible>
                 <label>$ADDON[script.ftvguide 30501]</label>
@@ -94,24 +95,25 @@
         </control>
 
         <control type="label">
-            <posx>90</posx>
-            <posy>112</posy>
-            <width>520</width>
-            <height>40</height>
-            <align>center</align>
-            <aligny>center</aligny>
-            <font>font13</font>
+            <posx>156</posx>
+            <posy>180</posy>
+            <width>180</width>
+            <height>50</height>
+            <textcolor>ff363636</textcolor>
+            <font>Font-ListInfo-Small</font>
+			<align>left</align>
+            <aligny>top</aligny>
             <textcolor>ffffffff</textcolor>
             <label>$ADDON[script.ftvguide 30500]</label>
         </control>
 		<control type="label">
             <description>Help and Tips</description>
-            <posx>180</posx>
-            <posy>160</posy>
+            <posx>165</posx>
+            <posy>215</posy>
             <width>400</width>
             <height>400</height>
-            <textcolor>ffffffff</textcolor>
-            <font>font13</font>
+            <textcolor>ffb8b8b8</textcolor>
+            <font>Font-ListInfo-Small</font>
 			<align>justify</align>
             <aligny>top</aligny>
 			<wrapmultiline>true</wrapmultiline>
@@ -120,9 +122,9 @@
         </control>
         <control type="fixedlist" id="6000">
             <posx>600</posx>
-            <posy>171</posy>
+            <posy>229</posy>
             <width>520</width>
-            <height>358</height>
+            <height>300</height>
             <viewtype label="list">list</viewtype>
             <orientation>vertical</orientation>
             <focusposition>7</focusposition>
@@ -141,7 +143,7 @@
                     <width>450</width>
                     <height>38</height>
                     <aligny>center</aligny>
-                    <font>font13</font>
+                    <font>Font-ListInfo-Small</font>
                     <textcolor>ffffffff</textcolor>
                     <info>ListItem.Label</info>
                 </control>
@@ -175,7 +177,7 @@
                     <width>450</width>
                     <height>38</height>
                     <aligny>center</aligny>
-                    <font>font13</font>
+                    <font>Font-ListInfo-Small</font>
                     <textcolor>ffffffff</textcolor>
                     <label>[B]$INFO[ListItem.Label][/B]</label>
                 </control>
@@ -188,35 +190,47 @@
                 </control>
             </focusedlayout>
         </control>
+		
+		<control type="label">
+                <posx>1100</posx>
+                <posy>560</posy>
+                <width>610</width>
+                <height>80</height>
+				<font>Font-ListInfo-Small</font>
+				<aligny>top</aligny>
+				<align>right</align>
+                <label>Press the right key to go to channel options.</label>
+                <wrapmultiline>true</wrapmultiline>
+            </control>
 
         <control type="button" id="6003">
-            <posx>736</posx>
-            <posy>550</posy>
+            <posx>752</posx>
+            <posy>610</posy>
             <width>200</width>
             <height>40</height>
             <align>center</align>
             <aligny>center</aligny>
-            <font>font13</font>
+            <font>Font-ListInfo-Small</font>
             <textcolor>ffffffff</textcolor>
+            <texturefocus>tvguide-program-grey-focus.png</texturefocus>
+			<texturenofocus>desc-bg.png</texturenofocus>
             <label>$ADDON[script.ftvguide 30502]</label>
-            <texturefocus>menu-grey-focus.png</texturefocus>
-            <texturenofocus>menu-grey.png</texturenofocus>
             <onleft>6000</onleft>
             <onright>6004</onright>
             <onup>6000</onup>
         </control>
         <control type="button" id="6004">
-            <posx>937</posx>
-            <posy>550</posy>
+            <posx>956</posx>
+            <posy>610</posy>
             <width>200</width>
             <height>40</height>
             <align>center</align>
             <aligny>center</aligny>
-            <font>font13</font>
+            <font>Font-ListInfo-Small</font>
             <textcolor>ffffffff</textcolor>
+            <texturefocus>tvguide-program-grey-focus.png</texturefocus>
+			<texturenofocus>desc-bg.png</texturenofocus>
             <label>$ADDON[script.ftvguide 30503]</label>
-            <texturefocus>menu-grey-focus.png</texturefocus>
-            <texturenofocus>menu-grey.png</texturenofocus>
             <onleft>6003</onleft>
             <onright>6000</onright>
             <onup>6000</onup>

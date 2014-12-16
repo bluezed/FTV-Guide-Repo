@@ -556,13 +556,13 @@
             </control>
             <control type="image" id="4024">
                 <description>Channel logo</description>
-                <posx>200</posx>
-                <posy>70</posy>
-                <width>75</width>
-                <height>38</height>
+                <posx>960</posx>
+                <posy>545</posy>
+                <width>270</width>
+                <height>110</height>
                 <aspectratio>keep</aspectratio>
                 <fadetime>500</fadetime>
-                <visible>false</visible><!-- unused in default skin -->
+                <visible>true</visible><!-- unused in default skin -->
             </control>
             <control type="label" id="4021">
                 <description>Program time</description>
