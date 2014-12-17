@@ -440,3 +440,19 @@ msgstr ""
 msgctxt "#30804"
 msgid "Streaming using that addon is now disabled."
 msgstr ""
+
+msgctxt "#30900"
+msgid "Autostart FTV Guide when Kodi starts up"
+msgstr ""
+
+msgctxt "#31000"
+msgid "Connection problem"
+msgstr ""
+
+msgctxt "#31001"
+msgid "It was not possible to update from the server."
+msgstr ""
+
+msgctxt "#31002"
+msgid "Current local data will be kept for now..."
+msgstr ""

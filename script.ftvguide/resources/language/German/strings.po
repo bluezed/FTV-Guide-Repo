@@ -421,3 +421,19 @@ msgstr "addon, welches nicht installiert ist."
 msgctxt "#30804"
 msgid "Streaming using that addon is now disabled."
 msgstr "Streaming mit diesem Addon ist jetzt deaktiviert."
+
+msgctxt "#30900"
+msgid "Autostart FTV Guide when Kodi starts up"
+msgstr "Beim Start von Kodi automatisch starten"
+
+msgctxt "#31000"
+msgid "Connection problem"
+msgstr "Verbindungsfehler"
+
+msgctxt "#31001"
+msgid "It was not possible to update from the server."
+msgstr "Das Update vom Server ist fehlgeschlagen."
+
+msgctxt "#31002"
+msgid "Current local data will be kept for now..."
+msgstr "Die lokal Daten bleiben weiterhin bestehen..."

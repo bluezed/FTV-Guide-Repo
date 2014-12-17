@@ -68,6 +68,10 @@ DATABASE_SCHEMA_ERROR_1 = 30157
 DATABASE_SCHEMA_ERROR_2 = 30158
 DATABASE_SCHEMA_ERROR_3 = 30159
 
+FETCH_ERROR_TITLE = 31000
+FETCH_ERROR_LINE1 = 31001
+FETCH_ERROR_LINE2 = 31002
+
 def strings(id, replacements = None):
     string = ADDON.getLocalizedString(id)
     if replacements is not None:

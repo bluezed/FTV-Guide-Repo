@@ -25,12 +25,11 @@ import notification
 import xbmc
 import source
 
-
 class Service(object):
     def __init__(self):
         self.database = source.Database()
         self.database.initialize(self.onInit)
-
+            
     def onInit(self, success):
         if success:
             self.database.updateChannelAndProgramListCaches(self.onCachesUpdated)
@@ -46,9 +45,11 @@ class Service(object):
         self.database.close(None)
 
 try:
-    ADDON = xbmcaddon.Addon(id = 'script.ftvguide')
+    ADDON = xbmcaddon.Addon('script.ftvguide')
     if ADDON.getSetting('cache.data.on.xbmc.startup') == 'true':
         Service()
+    if ADDON.getSetting('autostart') == "true":
+        xbmc.executebuiltin("RunAddon(script.ftvguide)")
 except source.SourceNotConfiguredException:
     pass  # ignore
 except Exception, ex:

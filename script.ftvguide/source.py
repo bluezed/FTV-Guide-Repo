@@ -840,6 +840,7 @@ class XMLTVSource(Source):
 
     def __init__(self, addon):
         self.needReset = False
+        self.fetchError = False
         self.xmltvType = int(addon.getSetting('xmltv.type'))
         self.xmltvInterval = int(addon.getSetting('xmltv.interval'))
         self.logoSource = int(addon.getSetting('logos.source'))
@@ -877,6 +878,7 @@ class XMLTVSource(Source):
             raise SourceNotConfiguredException()
 
     def updateLocalFile(self, name):
+        tmpFile = os.path.join(XMLTVSource.PLUGIN_DATA, 'tmp')
         path = os.path.join(XMLTVSource.PLUGIN_DATA, name)
         fetchFile = not os.path.exists(path) # always fetch if file doesn't exist!
  
@@ -896,12 +898,18 @@ class XMLTVSource(Source):
             xbmc.log('[script.ftvguide] Interval set to always or file doesn\'t exist. Fetching...', xbmc.LOGDEBUG)
  
         if (fetchFile):
-            f = open(path,'wb')
+            f = open(tmpFile,'wb')
             f.write(urllib2.urlopen(XMLTVSource.FTV_URL + name).read())
             f.close()
-
-            if (name <> XMLTVSource.INI_FILE):
-                self.needReset = True
+            if (os.path.getsize(tmpFile) > 1024):
+                if (os.path.exists(path)):
+                    os.remove(path)
+                os.rename(tmpFile, path)
+                if (name <> XMLTVSource.INI_FILE):
+                    self.needReset = True
+            elif (not self.fetchError):
+                self.fetchError = True
+                xbmcgui.Dialog().ok(strings(FETCH_ERROR_TITLE), strings(FETCH_ERROR_LINE1), strings(FETCH_ERROR_LINE2))
         else:
             xbmc.log('[script.ftvguide] Remote file fetching not due yet...', xbmc.LOGDEBUG)
         return path

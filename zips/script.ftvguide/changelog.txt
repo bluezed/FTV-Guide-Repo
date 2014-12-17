@@ -1,4 +1,10 @@
 --------------------------
+FTV Guide - 2.0.10
+--------------------------
++ Catch connection issues to server
++ Add Autostart setting
+
+--------------------------
 FTV Guide - 2.0.9
 --------------------------
 + Updated Eminence Skin

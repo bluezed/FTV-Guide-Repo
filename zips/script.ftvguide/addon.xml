@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.ftvguide" name="FTV Guide" version="2.0.9" provider-name="rayw1986, bluezed">
+<addon id="script.ftvguide" name="FTV Guide" version="2.0.10" provider-name="rayw1986, bluezed">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.simplejson" version="2.0.10"/>
 	</requires>
 	<extension point="xbmc.python.script" library="addon.py"/>
+    <extension point="xbmc.service" library="service.py" start="login"/>
 	<extension point="xbmc.addon.metadata">
 		<summary lang="be">FTV Guide allows you to combine some of your favourite live TV plugins for use with a fully working EPG</summary>
 		<summary lang="ca">Guia de TV amb suport de XMLTV i flux de dades</summary>
