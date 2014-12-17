@@ -168,6 +168,9 @@ if ( __name__ == "__main__" ):
                     #print('processing file: ' + os.path.join(rootdir,x,y))
                     if re.search("addon.xml|changelog|icon|fanart", y):
                         shutil.copyfile(os.path.join(rootdir,x,y), os.path.join(zipsfolder,y))
+                        if re.search("changelog", y):
+                            verName = y[:-4]+version+'.txt'
+                            shutil.copyfile(os.path.join(zipsfolder,y), os.path.join(zipsfolder,verName))
                         print('Copying %s to %s'  %(y, zipsfolder))                
                 ##check for and zip the folders
                 print('Zipping %s and moving to %s\n' %(x,zipsfolder))
