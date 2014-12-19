@@ -7,9 +7,9 @@ This repository is maintained by rayw1986 and bluezed.
 
 For official support go to the forums on [tvaddons.ag](http://forums.tvaddons.ag/threads/22837-RELEASE-FTV-Guide)
 
-Download the Repository from [HERE](https://github.com/bluezed/FTV-Guide-Repo/raw/master/zips/repository.FTV-Guide-Repo/repository.FTV-Guide-Repo-1.0.zip)                                                      
+Download the Repository from [HERE](http://raw.github.com/bluezed/FTV-Guide-Repo/master/zips/repository.FTV-Guide-Repo/repository.FTV-Guide-Repo-1.1.zip)
 Or scan this QR-Code                                                                                     
-![](http://s19.postimg.org/rjyszrhb3/FTV_Guide_Repo_QRcode_100px.png)
+![](http://s19.postimg.org/r8g0oeyjj/qr_code.png)
 
 
 Here are the basic steps to install the FTV Guide on your Kodi/XBMC box.
