@@ -26,6 +26,7 @@
 # *  Changelog:
 # *  - [bluezed] Zip file creation changed to not include version number inside the zipped folder
 # *  - [bluezed] File copying modified to only copy addon.xml and not addon.py as well
+# *  - [bluezed] Changed to create changelog-x.x.x.txt
  
 """ addons.xml generator """
 
