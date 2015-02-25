@@ -1,4 +1,10 @@
 --------------------------
+FTV Guide - 2.0.12
+--------------------------
++ Guide type selection through new ini-file
++ Bugfix - Mouse nav-bar disappearing
+
+--------------------------
 FTV Guide - 2.0.11
 --------------------------
 + Bugfix - Database lock causes Kodi to freeze on exit (Thanks "newguy"!)
