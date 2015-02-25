@@ -1,4 +1,9 @@
 --------------------------
+FTV Guide - 2.0.13
+--------------------------
++ Bugfix - new type selection had an error
+
+--------------------------
 FTV Guide - 2.0.12
 --------------------------
 + Guide type selection through new ini-file

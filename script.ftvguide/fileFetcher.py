@@ -32,6 +32,10 @@ class FileFetcher(object):
     INTERVAL_24 = 2
     INTERVAL_48 = 3
 
+    FETCH_ERROR = -1
+    FETCH_NOT_NEEDED = 0
+    FETCH_OK = 1
+    
     basePath = xbmc.translatePath(os.path.join('special://profile', 'addon_data', 'script.ftvguide'))
     filePath = ''
     fileUrl = ''
@@ -43,7 +47,7 @@ class FileFetcher(object):
         self.fileUrl = MAIN_URL + fileName
 
     def fetchFile(self):
-        retVal = 0
+        retVal = self.FETCH_NOT_NEEDED
         fetch = False
         if not os.path.exists(self.filePath):  # always fetch if file doesn't exist!
             fetch = True
@@ -74,8 +78,8 @@ class FileFetcher(object):
                 if os.path.exists(self.filePath):
                     os.remove(self.filePath)
                 os.rename(tmpFile, self.filePath)
-                retVal = 1
+                retVal = self.FETCH_OK
                 xbmc.log('[script.ftvguide] file %s was downloaded' % self.filePath, xbmc.LOGDEBUG)
             else:
-                retVal = -1
+                retVal = self.FETCH_ERROR
         return retVal

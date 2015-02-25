@@ -859,10 +859,10 @@ class XMLTVSource(Source):
     def updateLocalFile(self, name, addon):
         path = os.path.join(XMLTVSource.PLUGIN_DATA, name)
         fetcher = FileFetcher(name, addon)
-        if fetcher.fetchFile() >= 0:
-            if name <> XMLTVSource.INI_FILE:
-                self.needReset = True
-        else:
+        retVal = fetcher.fetchFile()
+        if retVal == fetcher.FETCH_OK and name <> XMLTVSource.INI_FILE:
+            self.needReset = True
+        elif retVal == fetcher.FETCH_ERROR:
             xbmcgui.Dialog().ok(strings(FETCH_ERROR_TITLE), strings(FETCH_ERROR_LINE1), strings(FETCH_ERROR_LINE2))
 
         return path
