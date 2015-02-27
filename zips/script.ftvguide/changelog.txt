@@ -1,4 +1,10 @@
 --------------------------
+FTV Guide - 2.0.14
+--------------------------
++ Workaround - Android setSettings() not working - see Kodi bug:
+ #13913 - [android/python] addons can not save settings  [http://trac.kodi.tv/ticket/13913]
+
+--------------------------
 FTV Guide - 2.0.13
 --------------------------
 + Bugfix - new type selection had an error

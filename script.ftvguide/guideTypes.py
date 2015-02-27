@@ -21,8 +21,9 @@
 import xbmc
 import xbmcgui
 import xbmcaddon
-
+import os
 import ConfigParser
+import xml.etree.ElementTree as ET
 
 from fileFetcher import *
 from strings import *
@@ -106,13 +107,38 @@ class GuideTypes(object):
 
 
 if __name__ == '__main__':
-    list = []
+    guideList = []
     gTypes = GuideTypes()
-    for type in gTypes.guideTypes:
-        list.append(type[gTypes.GUIDE_NAME])
+    for gType in gTypes.guideTypes:
+        guideList.append(gType[gTypes.GUIDE_NAME])
     d = xbmcgui.Dialog()
-    ret = d.select('Select what type of guide you want to use', list)
+    ret = d.select('Select what type of guide you want to use', guideList)
     if ret >= 0:
         guideId = gTypes.guideTypes[ret][gTypes.GUIDE_ID]
-        ADDON.setSetting('xmltv.type', str(guideId))
-        ADDON.setSetting('xmltv.type_select', gTypes.getGuideDataItem(guideId, gTypes.GUIDE_NAME))
+        typeId = str(guideId)
+        typeName = gTypes.getGuideDataItem(guideId, gTypes.GUIDE_NAME)
+        if xbmc.getCondVisibility('system.platform.android'):
+            # This workaround is needed due to a Bug in the Kodi Android implementation
+            # where setSetting() does not have any effect:
+            #  #13913 - [android/python] addons can not save settings  [http://trac.kodi.tv/ticket/13913]
+            xbmc.log('[script.ftvguide] Running on ANDROID... using workaround!', xbmc.LOGDEBUG)
+            path = xbmc.translatePath(os.path.join('special://profile', 'addon_data', 'script.ftvguide'))
+            if not os.path.exists(path):
+                os.makedirs(path)
+            filePath = os.path.join(path, 'settings.xml')
+            tree = ET.parse(filePath)
+            root = tree.getroot()
+            updated = False
+            for item in root.findall('setting'):
+                if item.attrib['id'] == 'xmltv.type':
+                    item.attrib['value'] = typeId
+                    updated = True
+                elif item.attrib['id'] == 'xmltv.type_select':
+                    item.attrib['value'] = typeName
+                    updated = True
+            if updated:
+                tree.write(filePath)
+                ADDON.openSettings()
+        else:
+            ADDON.setSetting('xmltv.type', typeId)
+            ADDON.setSetting('xmltv.type_select', typeName)
