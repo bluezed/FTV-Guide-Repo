@@ -109,7 +109,7 @@ class Database(object):
 
     def __init__(self):
         self.conn = None
-        self.eventQueue = guideList()
+        self.eventQueue = list()
         self.event = threading.Event()
         self.eventResults = dict()
 
@@ -119,7 +119,7 @@ class Database(object):
         self.updateFailed = False
         self.settingsChanged = None
         self.alreadyTriedUnlinking = False
-        self.channelList = guideList()
+        self.channelList = list()
 
         profilePath = xbmc.translatePath(ADDON.getAddonInfo('profile'))
         if not os.path.exists(profilePath):
@@ -495,7 +495,7 @@ class Database(object):
 
     def _getChannelList(self, onlyVisible):
         c = self.conn.cursor()
-        channelList = guideList()
+        channelList = list()
         if onlyVisible:
             c.execute('SELECT * FROM channels WHERE source=? AND visible=? ORDER BY weight', [self.source.KEY, True])
         else:
@@ -573,7 +573,7 @@ class Database(object):
         @return:
         """
         endTime = startTime + datetime.timedelta(hours=2)
-        programList = guideList()
+        programList = list()
 
         channelMap = dict()
         for c in channels:
@@ -857,7 +857,7 @@ class XMLTVSource(Source):
             raise SourceNotConfiguredException()
 
     def updateLocalFile(self, name, addon):
-        fPath = os.path.join(XMLTVSource.PLUGIN_DATA, name)
+        path = os.path.join(XMLTVSource.PLUGIN_DATA, name)
         fetcher = FileFetcher(name, addon)
         retVal = fetcher.fetchFile()
         if retVal == fetcher.FETCH_OK and name <> XMLTVSource.INI_FILE:
@@ -865,7 +865,7 @@ class XMLTVSource(Source):
         elif retVal == fetcher.FETCH_ERROR:
             xbmcgui.Dialog().ok(strings(FETCH_ERROR_TITLE), strings(FETCH_ERROR_LINE1), strings(FETCH_ERROR_LINE2))
 
-        return fPath
+        return path
 
     def getDataFromExternal(self, date, progress_callback=None):
 

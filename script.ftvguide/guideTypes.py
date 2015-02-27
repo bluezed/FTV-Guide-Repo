@@ -122,10 +122,7 @@ if __name__ == '__main__':
             # where setSetting() does not have any effect:
             #  #13913 - [android/python] addons can not save settings  [http://trac.kodi.tv/ticket/13913]
             xbmc.log('[script.ftvguide] Running on ANDROID... using workaround!', xbmc.LOGDEBUG)
-            path = xbmc.translatePath(os.path.join('special://profile', 'addon_data', 'script.ftvguide'))
-            if not os.path.exists(path):
-                os.makedirs(path)
-            filePath = os.path.join(path, 'settings.xml')
+            filePath = xbmc.translatePath(os.path.join('special://profile', 'addon_data', 'script.ftvguide', 'settings.xml'))
             tree = ET.parse(filePath)
             root = tree.getroot()
             updated = False

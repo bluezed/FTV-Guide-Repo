@@ -1,4 +1,9 @@
 --------------------------
+FTV Guide - 2.0.15
+--------------------------
++ Bugfix - Guide data not loading
+
+--------------------------
 FTV Guide - 2.0.14
 --------------------------
 + Workaround - Android setSettings() not working - see Kodi bug:

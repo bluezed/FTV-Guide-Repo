@@ -45,6 +45,9 @@ class FileFetcher(object):
         self.addon = addon
         self.filePath = os.path.join(self.basePath, fileName)
         self.fileUrl = MAIN_URL + fileName
+        # make sure the folder is actually there already!
+        if not os.path.exists(self.basePath):
+            os.makedirs(self.basePath)
 
     def fetchFile(self):
         retVal = self.FETCH_NOT_NEEDED

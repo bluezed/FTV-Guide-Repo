@@ -53,4 +53,4 @@ try:
 except source.SourceNotConfiguredException:
     pass  # ignore
 except Exception, ex:
-    xbmc.log('[script.ftvguide] Uncaugt exception in service.py: %s' % str(ex) , xbmc.LOGDEBUG)
+    xbmc.log('[script.ftvguide] Uncaught exception in service.py: %s' % str(ex) , xbmc.LOGDEBUG)
