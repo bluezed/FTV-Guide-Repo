@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 #
-# Copyright (C) 2013 Tommy Winther
+#      Copyright (C) 2013 Tommy Winther
 #      http://tommy.winther.nu
 #
 #      Modified for FTV Guide (09/2014 onwards)
@@ -308,19 +309,18 @@ class Database(object):
         sqlite3.register_adapter(datetime.datetime, self.adapt_datetime)
         sqlite3.register_converter('timestamp', self.convert_datetime)
 
-        # if the xmltv data needs to be loaded the database
-        # should be reset to avoid ghosting!
-        if self.source.needReset:
+        if not self._isCacheExpired(date) and not self.source.needReset:
+            return
+        else:
+            # if the xmltv data needs to be loaded the database
+            # should be reset to avoid ghosting!
             self.updateInProgress = True
             c = self.conn.cursor()
             c.execute("DELETE FROM updates")
             c.execute("UPDATE sources SET channels_updated=0")
             self.conn.commit()
             c.close()
-            self.updateInProgress = False
             self.source.needReset = False
-        if not self._isCacheExpired(date):
-            return
 
         self.updateInProgress = True
         self.updateFailed = False

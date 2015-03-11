@@ -1,4 +1,11 @@
 --------------------------
+FTV Guide - 2.0.16
+--------------------------
++ Android workaround no longer needed for Kodi 15
++ Restore logo if no programme image
++ Fixed ghosting with local XMLTV file
+
+--------------------------
 FTV Guide - 2.0.15
 --------------------------
 + Bugfix - Guide data not loading

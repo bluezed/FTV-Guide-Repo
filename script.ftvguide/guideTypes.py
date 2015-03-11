@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # FTV Guide
 # Copyright (C) 2015 Thomas Geppert [bluezed]
@@ -22,6 +23,7 @@ import xbmc
 import xbmcgui
 import xbmcaddon
 import os
+import json
 import ConfigParser
 import xml.etree.ElementTree as ET
 
@@ -106,6 +108,17 @@ class GuideTypes(object):
         return ret
 
 
+def getKodiVersion():
+    # retrieve current installed version
+    jsonQuery = xbmc.executeJSONRPC('{ "jsonrpc": "2.0", "method": "Application.GetProperties", "params": {"properties": ["version", "name"]}, "id": 1 }')
+    jsonQuery = unicode(jsonQuery, 'utf-8', errors='ignore')
+    jsonQuery = json.loads(jsonQuery)
+    version = []
+    if jsonQuery.has_key('result') and jsonQuery['result'].has_key('version'):
+        version = jsonQuery['result']['version']
+    return version['major']
+
+
 if __name__ == '__main__':
     guideList = []
     gTypes = GuideTypes()
@@ -117,11 +130,12 @@ if __name__ == '__main__':
         guideId = gTypes.guideTypes[ret][gTypes.GUIDE_ID]
         typeId = str(guideId)
         typeName = gTypes.getGuideDataItem(guideId, gTypes.GUIDE_NAME)
-        if xbmc.getCondVisibility('system.platform.android'):
+        ver = getKodiVersion()
+        if xbmc.getCondVisibility('system.platform.android') and int(ver) < 15:
             # This workaround is needed due to a Bug in the Kodi Android implementation
             # where setSetting() does not have any effect:
             #  #13913 - [android/python] addons can not save settings  [http://trac.kodi.tv/ticket/13913]
-            xbmc.log('[script.ftvguide] Running on ANDROID... using workaround!', xbmc.LOGDEBUG)
+            xbmc.log('[script.ftvguide] Running on ANDROID with Kodi v%s --> using workaround!' % str(ver), xbmc.LOGDEBUG)
             filePath = xbmc.translatePath(os.path.join('special://profile', 'addon_data', 'script.ftvguide', 'settings.xml'))
             tree = ET.parse(filePath)
             root = tree.getroot()
@@ -136,6 +150,6 @@ if __name__ == '__main__':
             if updated:
                 tree.write(filePath)
                 ADDON.openSettings()
-        else:
+        else:  # standard settings handling...
             ADDON.setSetting('xmltv.type', typeId)
             ADDON.setSetting('xmltv.type_select', typeName)

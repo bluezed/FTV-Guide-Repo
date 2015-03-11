@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # FTV Guide
 # Copyright (C) 2015 Thomas Geppert [bluezed]
