@@ -133,14 +133,27 @@
 				
 				<control type="label" id="3999">
                     <description>Displays todays date</description>
-                    <posx>1200</posx>
-                    <posy>-20</posy>
+                    <posx>1250</posx>
+                    <posy>-10</posy>
                     <width>500</width>
                     <height>100</height>
                     <textcolor>ffc00000</textcolor>
                     <font>font13</font>
 					<align>right</align>
                     <aligny>center</aligny>
+                </control>
+				
+				<control type="label">
+                    <description>Displays todays date</description>
+                    <posx>1250</posx>
+                    <posy>-30</posy>
+                    <width>500</width>
+                    <height>100</height>
+                    <textcolor>ffc00000</textcolor>
+                    <font>font13</font>
+					<align>right</align>
+                    <aligny>center</aligny>
+					<label>$INFO[System.Time(hh:mm:xx)]</label>
                 </control>
 				
 				<control type="label">
