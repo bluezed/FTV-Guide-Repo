@@ -456,3 +456,19 @@ msgstr ""
 msgctxt "#31002"
 msgid "Current local data will be kept for now..."
 msgstr ""
+
+msgctxt "#80000"
+msgid "My Movies"
+msgstr ""
+
+msgctxt "#80001"
+msgid "My TV Shows"
+msgstr ""
+
+msgctxt "#80002"
+msgid "Video Add-Ons"
+msgstr ""
+
+msgctxt "#80003"
+msgid "On-Demand"
+msgstr ""

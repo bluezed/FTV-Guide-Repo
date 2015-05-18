@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 #      Copyright (C) 2014 Tommy Winther
 #      http://tommy.winther.nu
@@ -422,6 +421,15 @@ class TVGuide(xbmcgui.WindowXML):
         elif buttonClicked == PopupMenu.C_POPUP_QUIT:
             self.close()
 
+        elif buttonClicked == PopupMenu.C_POPUP_LIBMOV:
+            xbmc.executebuiltin('ActivateWindow(Videos,videodb://movies/titles/)')
+
+        elif buttonClicked == PopupMenu.C_POPUP_LIBTV:
+            xbmc.executebuiltin('ActivateWindow(Videos,videodb://tvshows/titles/)')
+			
+        elif buttonClicked == PopupMenu.C_POPUP_VIDEOADDONS:
+            xbmc.executebuiltin('ActivateWindow(Videos,addons://sources/video/)')
+			
     def setFocusId(self, controlId):
         control = self.getControl(controlId)
         if control:
@@ -961,7 +969,11 @@ class PopupMenu(xbmcgui.WindowXMLDialog):
     C_POPUP_CHANNEL_LOGO = 4100
     C_POPUP_CHANNEL_TITLE = 4101
     C_POPUP_PROGRAM_TITLE = 4102
-
+    C_POPUP_LIBMOV = 80000
+    C_POPUP_LIBTV = 80001
+    C_POPUP_VIDEOADDONS = 80002
+	
+	
     def __new__(cls, database, program, showRemind):
         return super(PopupMenu, cls).__new__(cls, 'script-tvguide-menu.xml', ADDON.getAddonInfo('path'), SKIN)
 
