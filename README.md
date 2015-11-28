@@ -1,7 +1,12 @@
 FTV-Guide-Repo
 ==============
 
-Repository that hosts the FTVGuide XBMC/Kodi add on.
+> **NOTE** *This is the original FTVGuide, a fork of the [script.tvguide](https://github.com/twinther/script.tvguide) by twinther.*
+
+> *The FTVGuide is free and open source. There is no charge for using it so if your installation asks for payment or a donation then you have not installed the original FTVGuide but some "rip-off" version!*
+
+
+Repository that hosts the FTVGuide Kodi add on.
 
 This repository is maintained by rayw1986 and bluezed.
 
@@ -12,12 +17,12 @@ Or scan this QR-Code
 ![](http://s19.postimg.org/r8g0oeyjj/qr_code.png)
 
 
-Here are the basic steps to install the FTV Guide on your Kodi/XBMC box.
+Here are the basic steps to install the FTV Guide on your Kodi box.
 
 # Prerequisites
-* XBMC 13 or higher
+* XBMC 13, Kodi 14 or higher
 * The downloaded Repository Zip-file
-* Place the file somewhere you can get to easily on your XBMC box
+* Place the file somewhere you can get to easily on your Kodi box
 
 # Installation
 1. Go to System -> Addons and select "Install from Zip-file"                                          
