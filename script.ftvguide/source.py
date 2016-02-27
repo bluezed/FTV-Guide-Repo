@@ -240,7 +240,11 @@ class Database(object):
             self.conn.close()
 
     def _wasSettingsChanged(self, addon):
-        settingsChanged = False
+        gType = GuideTypes()
+        if int(addon.getSetting('xmltv.type')) == gType.CUSTOM_FILE_ID:
+            settingsChanged = addon.getSetting('xmltv.refresh') == 'true'
+        else:
+            settingsChanged = False
         noRows = True
         count = 0
 
@@ -845,7 +849,8 @@ class XMLTVSource(Source):
             self.logoFolder = str(addon.getSetting('logos.folder'))
 
         if self.xmltvType == gType.CUSTOM_FILE_ID:
-            self.xmltvFile = str(addon.getSetting('xmltv.file'))  # uses local file provided by user!
+            self.updateLocalFile(str(addon.getSetting('xmltv.file')), addon)
+            self.xmltvFile = os.path.join(XMLTVSource.PLUGIN_DATA, str(addon.getSetting('xmltv.file')).split('/')[-1])
         else:
             self.xmltvFile = self.updateLocalFile(gType.getGuideDataItem(self.xmltvType, gType.GUIDE_FILE), addon)
 
@@ -860,7 +865,7 @@ class XMLTVSource(Source):
         path = os.path.join(XMLTVSource.PLUGIN_DATA, name)
         fetcher = FileFetcher(name, addon)
         retVal = fetcher.fetchFile()
-        if retVal == fetcher.FETCH_OK and name <> XMLTVSource.INI_FILE:
+        if retVal == fetcher.FETCH_OK and name != XMLTVSource.INI_FILE:
             self.needReset = True
         elif retVal == fetcher.FETCH_ERROR:
             xbmcgui.Dialog().ok(strings(FETCH_ERROR_TITLE), strings(FETCH_ERROR_LINE1), strings(FETCH_ERROR_LINE2))

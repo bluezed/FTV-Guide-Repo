@@ -252,7 +252,9 @@ msgctxt "#30148"
 msgid "Appearance"
 msgstr "Darstellung"
 
-#empty strings from id 30149 to 30149
+msgctxt "#30149"
+msgid "Refresh on start"
+msgstr "Beim Start aktualisieren"
 
 msgctxt "#30150"
 msgid "Oops, sorry about that!"

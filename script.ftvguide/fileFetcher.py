@@ -44,8 +44,13 @@ class FileFetcher(object):
 
     def __init__(self, fileName, addon):
         self.addon = addon
-        self.filePath = os.path.join(self.basePath, fileName)
-        self.fileUrl = MAIN_URL + fileName
+
+        if fileName.startswith("http") or fileName.startswith("ftp"):
+            self.fileUrl = fileName
+            self.filePath = os.path.join(self.basePath, fileName.split('/')[-1])
+        else:
+            self.fileUrl = MAIN_URL + fileName
+            self.filePath = os.path.join(self.basePath, fileName)
         # make sure the folder is actually there already!
         if not os.path.exists(self.basePath):
             os.makedirs(self.basePath)
@@ -72,7 +77,12 @@ class FileFetcher(object):
         if fetch:
             tmpFile = os.path.join(self.basePath, 'tmp')
             f = open(tmpFile, 'wb')
-            tmpData = urllib2.urlopen(self.fileUrl)
+            if self.fileUrl.startswith("http") or self.fileUrl.startswith("ftp"):
+                xbmc.log('[script.ftvguide] file is on the internet: %s' % self.fileUrl, xbmc.LOGDEBUG)
+                tmpData = urllib2.urlopen(self.fileUrl)
+            else:
+                xbmc.log('[script.ftvguide] file is somewhere else: %s' % self.fileUrl, xbmc.LOGDEBUG)
+                tmpData = open(self.fileUrl, "rb")
             data = tmpData.read()
             if tmpData.info().get('content-encoding') == 'gzip':
                 data = zlib.decompress(data, zlib.MAX_WBITS + 16)
