@@ -849,8 +849,16 @@ class XMLTVSource(Source):
             self.logoFolder = str(addon.getSetting('logos.folder'))
 
         if self.xmltvType == gType.CUSTOM_FILE_ID:
-            self.updateLocalFile(str(addon.getSetting('xmltv.file')), addon)
-            self.xmltvFile = os.path.join(XMLTVSource.PLUGIN_DATA, str(addon.getSetting('xmltv.file')).split('/')[-1])
+            customFile = str(addon.getSetting('xmltv.file'))
+            if os.path.exists(customFile):
+                # uses local file provided by user!
+                xbmc.log('[script.ftvguide] Use local file: %s' % customFile, xbmc.LOGDEBUG)
+                self.xmltvFile = customFile
+            else:
+                # Probably a remote file
+                xbmc.log('[script.ftvguide] Use remote file: %s' % customFile, xbmc.LOGDEBUG)
+                self.updateLocalFile(customFile, addon)
+                self.xmltvFile = os.path.join(XMLTVSource.PLUGIN_DATA, customFile.split('/')[-1])
         else:
             self.xmltvFile = self.updateLocalFile(gType.getGuideDataItem(self.xmltvType, gType.GUIDE_FILE), addon)
 
