@@ -917,7 +917,6 @@ class XMLTVSource(Source):
                 return None
 
             # normalize the given time to UTC by applying the timedelta provided in the timestamp
-            xbmc.log('[script.ftvguide] Date to normalize: ' + dateString, xbmc.LOGDEBUG)
             try:
                 t_tmp = datetime.datetime.strptime(dateString, '%Y%m%d%H%M%S')
             except TypeError:
@@ -935,7 +934,7 @@ class XMLTVSource(Source):
             td_local = datetime.timedelta(seconds=utc_offset)
 
             t = t + td_local
-            xbmc.log('[script.ftvguide] Import Time adjusted from: ' + str(t_tmp) + ' to: ' + str(t), xbmc.LOGDEBUG)
+
             return t
 
         else:
