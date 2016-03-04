@@ -948,7 +948,7 @@ class XMLTVSource(Source):
             if event == "end":
                 result = None
                 if elem.tag == "programme":
-                    channel = elem.get("channel")
+                    channel = elem.get("channel").replace("'", "")  # Make ID safe to use as ' can cause crashes!
                     description = elem.findtext("desc")
                     iconElement = elem.find("icon")
                     icon = None
@@ -960,12 +960,12 @@ class XMLTVSource(Source):
                                      self.parseXMLTVDate(elem.get('stop')), description, imageSmall=icon)
 
                 elif elem.tag == "channel":
-                    id = elem.get("id")
+                    cid = elem.get("id").replace("'", "")  # Make ID safe to use as ' can cause crashes!
                     title = elem.findtext("display-name")
                     logo = None
                     if logoFolder:
                         logoFile = os.path.join(logoFolder, title + '.png')
-                        if (self.logoSource == XMLTVSource.LOGO_SOURCE_FTV):
+                        if self.logoSource == XMLTVSource.LOGO_SOURCE_FTV:
                             logo = logoFile.replace(' ', '%20')  # needed due to fetching from a server!
                         elif xbmcvfs.exists(logoFile):
                             logo = logoFile  # local file instead of remote!
@@ -978,7 +978,7 @@ class XMLTVSource(Source):
                         visible = False
                     else:
                         visible = True
-                    result = Channel(id, title, logo, streamUrl, visible)
+                    result = Channel(cid, title, logo, streamUrl, visible)
 
                 if result:
                     elements_parsed += 1
