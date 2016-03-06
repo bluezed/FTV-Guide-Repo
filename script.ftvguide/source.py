@@ -876,7 +876,6 @@ class XMLTVSource(Source):
                 xbmc.log('[script.ftvguide] Use remote file: %s' % customFile, xbmc.LOGDEBUG)
                 self.updateLocalFile(customFile, addon)
 
-
         if not self.xmltvFile or not xbmcvfs.exists(self.xmltvFile):
             raise SourceNotConfiguredException()
 
