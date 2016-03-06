@@ -1,5 +1,5 @@
 --------------------------
-FTV Guide - 2.0.19d
+FTV Guide - 2.0.19e
 --------------------------
 + Added "refresh on start" setting for custom guides
 + Improved Custom Guide fetching to work with remote files
