@@ -1,4 +1,10 @@
 --------------------------
+FTV Guide - 2.0.20
+--------------------------
++ Added Background Update Service
++ Improved file downloading again
+
+--------------------------
 FTV Guide - 2.0.19e
 --------------------------
 + Added "refresh on start" setting for custom guides

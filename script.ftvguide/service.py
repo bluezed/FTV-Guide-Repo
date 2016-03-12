@@ -26,6 +26,7 @@ import notification
 import xbmc
 import source
 
+
 class Service(object):
     def __init__(self):
         self.database = source.Database()
@@ -45,13 +46,37 @@ class Service(object):
 
         self.database.close(None)
 
-try:
-    ADDON = xbmcaddon.Addon('script.ftvguide')
-    if ADDON.getSetting('cache.data.on.xbmc.startup') == 'true':
-        Service()
-    if ADDON.getSetting('autostart') == "true":
-        xbmc.executebuiltin("RunAddon(script.ftvguide)")
-except source.SourceNotConfiguredException:
-    pass  # ignore
-except Exception, ex:
-    xbmc.log('[script.ftvguide] Uncaught exception in service.py: %s' % str(ex) , xbmc.LOGDEBUG)
+
+if __name__ == '__main__':
+    try:
+        ADDON = xbmcaddon.Addon('script.ftvguide')
+        if ADDON.getSetting('autostart') == "true":
+            xbmc.executebuiltin("RunAddon(script.ftvguide)")
+        
+        if ADDON.getSetting('background.service') == 'true':
+            monitor = xbmc.Monitor()
+            xbmc.log("[script.ftvguide] Background service started...", xbmc.LOGDEBUG)
+            Service()
+            interval = int(ADDON.getSetting('service.interval'))
+            waitTime = 21600  # Default 6hrs
+            if interval == 0:
+                waitTime = 7200   # 2hrs
+            elif interval == 1:
+                waitTime = 21600  # 6hrs
+            elif interval == 2:
+                waitTime = 43200  # 12hrs
+            elif interval == 3:
+                waitTime = 86400  # 24hrs
+            while not monitor.abortRequested():
+                # Sleep/wait for specified time
+                xbmc.log("[script.ftvguide] Service waiting for interval %s" % waitTime, xbmc.LOGDEBUG)
+                if monitor.waitForAbort(waitTime):
+                    # Abort was requested while waiting. We should exit
+                    break
+                xbmc.log("[script.ftvguide] Service now triggered...", xbmc.LOGDEBUG)
+                Service()
+                
+    except source.SourceNotConfiguredException:
+        pass  # ignore
+    except Exception, ex:
+        xbmc.log('[script.ftvguide] Uncaught exception in service.py: %s' % str(ex), xbmc.LOGDEBUG)

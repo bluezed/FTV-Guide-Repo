@@ -865,7 +865,7 @@ class XMLTVSource(Source):
 
         # make sure the ini file is fetched as well if necessary
         if self.addonsType == XMLTVSource.INI_TYPE_FTV:
-            self.updateLocalFile(XMLTVSource.INI_FILE, addon)
+            self.updateLocalFile(XMLTVSource.INI_FILE, addon, True)
         else:
             customFile = str(addon.getSetting('addons.ini.file'))
             if os.path.exists(customFile):
@@ -874,16 +874,16 @@ class XMLTVSource(Source):
             else:
                 # Probably a remote file
                 xbmc.log('[script.ftvguide] Use remote file: %s' % customFile, xbmc.LOGDEBUG)
-                self.updateLocalFile(customFile, addon)
+                self.updateLocalFile(customFile, addon, True)
 
         if not self.xmltvFile or not xbmcvfs.exists(self.xmltvFile):
             raise SourceNotConfiguredException()
 
-    def updateLocalFile(self, name, addon):
+    def updateLocalFile(self, name, addon, isIni=False):
         path = os.path.join(XMLTVSource.PLUGIN_DATA, name)
         fetcher = FileFetcher(name, addon)
         retVal = fetcher.fetchFile()
-        if retVal == fetcher.FETCH_OK and name != XMLTVSource.INI_FILE:
+        if retVal == fetcher.FETCH_OK and not isIni:
             self.needReset = True
         elif retVal == fetcher.FETCH_ERROR:
             xbmcgui.Dialog().ok(strings(FETCH_ERROR_TITLE), strings(FETCH_ERROR_LINE1), strings(FETCH_ERROR_LINE2))

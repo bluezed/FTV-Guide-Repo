@@ -340,6 +340,34 @@ msgctxt "#30308"
 msgid "Quit"
 msgstr "Beenden"
 
+#empty strings from id 30309 to 30399
+
+msgctxt "#30400"
+msgid "Background Update Service"
+msgstr "Hintergrund Update Service"
+
+msgctxt "#30401"
+msgid "Service Interval"
+msgstr "Serviceintervall"
+
+msgctxt "#30402"
+msgid "2 hrs"
+msgstr "2 Std."
+
+msgctxt "#30403"
+msgid "6 hrs"
+msgstr "6 Std."
+
+msgctxt "#30404"
+msgid "12 hrs"
+msgstr "12 Std."
+
+msgctxt "#30405"
+msgid "24 hrs"
+msgstr "24 Std."
+
+#empty strings from id 30406 to 30499
+
 msgctxt "#30500"
 msgid "[B]Edit channel order and visibility[/B]"
 msgstr "[B]Bearbeite Senderreihenfolge und Anzeigeoptionen[B/]"
