@@ -20,7 +20,7 @@ Or scan this QR-Code
 Here are the basic steps to install the FTV Guide on your Kodi box.
 
 # Prerequisites
-* XBMC 13, Kodi 14 or higher
+* Kodi 14 or higher
 * The downloaded Repository Zip-file
 * Place the file somewhere you can get to easily on your Kodi box
 
