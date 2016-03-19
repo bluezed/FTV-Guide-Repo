@@ -10,12 +10,13 @@ Repository that hosts the FTVGuide Kodi add on.
 
 This repository is maintained by rayw1986 and bluezed.
 
-For official support go to the forums on [tvaddons.ag](http://forums.tvaddons.ag/threads/22837-RELEASE-FTV-Guide)
+For official support go to the forums on [tvaddons.ag](https://forums.tvaddons.ag/ftv-guide-for-kodi/)
 
 Download the Repository from [HERE](http://raw.github.com/bluezed/FTV-Guide-Repo/master/zips/repository.FTV-Guide-Repo/repository.FTV-Guide-Repo-1.1.zip)
 Or scan this QR-Code                                                                                     
 ![](http://s19.postimg.org/r8g0oeyjj/qr_code.png)
 
+**NOTE** You can also install the Repository and Addon directly from the excellent [Fusion Installer](https://www.tvaddons.ag/fusion-installer-kodi) offered by tvaddons.ag!
 
 Here are the basic steps to install the FTV Guide on your Kodi box.
 
