@@ -105,6 +105,9 @@ class StreamsService(object):
                 continue # ignore addons that are not installed
 
             for (label, stream) in self.getAddonStreams(id):
+                if id == "plugin.video.meta":
+                    label = channel.title
+                    stream = str(stream.replace("<channel>", channel.title.replace(" ","%20")))
                 if label == channel.title:
                     matches.append((id, label, stream))
 
