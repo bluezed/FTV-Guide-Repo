@@ -1,4 +1,9 @@
 --------------------------
+FTV Guide - 2.0.21
+--------------------------
++ Merged Pull Request: add support for meta live players (Thanks midraal)
+
+--------------------------
 FTV Guide - 2.0.20
 --------------------------
 + Added Background Update Service

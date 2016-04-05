@@ -930,6 +930,7 @@ class XMLTVSource(Source):
             try:
                 t_tmp = datetime.datetime.strptime(dateString, '%Y%m%d%H%M%S')
             except TypeError:
+                xbmc.log('[script.ftvguide] strptime error with this date: %s' % dateString, xbmc.LOGDEBUG)
                 t_tmp = datetime.datetime.fromtimestamp(time.mktime(time.strptime(dateString, '%Y%m%d%H%M%S')))
             if offSign == '+':
                 t = t_tmp - td
