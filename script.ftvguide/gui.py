@@ -1349,6 +1349,9 @@ class StreamSetupDialog(xbmcgui.WindowXMLDialog):
         streams = self.streamingService.getAddonStreams(item.getProperty('addon_id'))
         items = list()
         for (label, stream) in streams:
+            if item.getProperty('addon_id') == "plugin.video.meta":
+                label = self.channel.title
+                stream = stream.replace("<channel>", self.channel.title.replace(" ","%20"))
             item = xbmcgui.ListItem(label)
             item.setProperty('stream', stream)
             items.append(item)
