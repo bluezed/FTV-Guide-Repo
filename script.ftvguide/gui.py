@@ -429,7 +429,15 @@ class TVGuide(xbmcgui.WindowXML):
 			
         elif buttonClicked == PopupMenu.C_POPUP_VIDEOADDONS:
             xbmc.executebuiltin('ActivateWindow(Videos,addons://sources/video/)')
-			
+
+        elif buttonClicked == PopupMenu.C_POPUP_PLAY_BEGINNING:
+            if program.season is not None:
+                xbmc.executebuiltin("RunPlugin(plugin://plugin.video.meta/tv/play_by_name/%s/%s/%s)" % (
+                    program.title.replace(" ", "%20").replace(",",""), program.season, program.episode))
+            elif program.is_movie == "Movie":
+                xbmc.executebuiltin("RunPlugin(plugin://plugin.video.meta/movies/play_by_name/%s)" % (
+                    program.title.replace(" ", "%20").replace(",","")))
+
     def setFocusId(self, controlId):
         control = self.getControl(controlId)
         if control:
@@ -457,7 +465,12 @@ class TVGuide(xbmcgui.WindowXML):
         if program is None:
             return
 
-        self.setControlLabel(self.C_MAIN_TITLE, '[B]%s[/B]' % program.title)
+        title = '[B]%s[/B]' % program.title
+        if program.season is not None and program.episode is not None:
+            title += " [B]S%sE%s[/B]" % (program.season, program.episode)
+        if program.is_movie == "Movie":
+            title += " [B](Movie)[/B]"
+        self.setControlLabel(self.C_MAIN_TITLE, title)
         if program.startDate or program.endDate:
             self.setControlLabel(self.C_MAIN_TIME,
                                  '[B]%s - %s[/B]' % (self.formatTime(program.startDate), self.formatTime(program.endDate)))
@@ -966,6 +979,7 @@ class PopupMenu(xbmcgui.WindowXMLDialog):
     C_POPUP_REMIND = 4002
     C_POPUP_CHANNELS = 4003
     C_POPUP_QUIT = 4004
+    C_POPUP_PLAY_BEGINNING = 4005
     C_POPUP_CHANNEL_LOGO = 4100
     C_POPUP_CHANNEL_TITLE = 4101
     C_POPUP_PROGRAM_TITLE = 4102
@@ -997,6 +1011,10 @@ class PopupMenu(xbmcgui.WindowXMLDialog):
         channelLogoControl = self.getControl(self.C_POPUP_CHANNEL_LOGO)
         channelTitleControl = self.getControl(self.C_POPUP_CHANNEL_TITLE)
         programTitleControl = self.getControl(self.C_POPUP_PROGRAM_TITLE)
+        programPlayBeginningControl = self.getControl(self.C_POPUP_PLAY_BEGINNING)
+
+        if self.program.season is None and self.program.is_movie == None:
+            programPlayBeginningControl.setVisible(False)
 
         playControl.setLabel(strings(WATCH_CHANNEL, self.program.channel.title))
         if not self.program.channel.isPlayable():
