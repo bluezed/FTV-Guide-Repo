@@ -431,13 +431,14 @@ class TVGuide(xbmcgui.WindowXML):
             xbmc.executebuiltin('ActivateWindow(Videos,addons://sources/video/)')
 
         elif buttonClicked == PopupMenu.C_POPUP_PLAY_BEGINNING:
+            title = program.title.replace(" ", "%20").replace(",", "").replace(u"\u2013", "-")
+            title = unicode.encode(title, "ascii", "ignore")
             if program.season is not None:
-                title = program.title.replace(" ", "%20").replace(",","").replace(u"\2013", "-")
-                xbmc.executebuiltin("RunPlugin(plugin://plugin.video.meta/tv/play_by_name/%s/%s/%s)" % (
-                    title, program.season, program.episode))
+                xbmc.executebuiltin("RunPlugin(plugin://plugin.video.meta/tv/play_by_name/%s/%s/%s/%s)" % (
+                    title, program.season, program.episode, program.language))
             elif program.is_movie == "Movie":
-                xbmc.executebuiltin("RunPlugin(plugin://plugin.video.meta/movies/play_by_name/%s)" % (
-                    title))
+                xbmc.executebuiltin("RunPlugin(plugin://plugin.video.meta/movies/play_by_name/%s/%s)" % (
+                    title, program.language))
 
     def setFocusId(self, controlId):
         control = self.getControl(controlId)
