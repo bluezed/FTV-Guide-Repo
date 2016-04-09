@@ -163,7 +163,7 @@ For any more help please visit TVAddons.ag</label>
 
         <control type="button" id="4005"><!-- watch from beginning -->
             <posx>160</posx>
-            <posy>178-</posy>
+            <posy>178</posy>
             <width>240</width>
             <height>50</height>
             <texturefocus>menu-grey-focus.png</texturefocus>

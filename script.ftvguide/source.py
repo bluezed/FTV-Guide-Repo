@@ -999,7 +999,8 @@ class XMLTVSource(Source):
                         episode_num = elem.findtext("episode-num")
                         categories = elem.findall("category")
                         for category in categories:
-                            if category.text == "Movies" or channel.lower().find("sky movies") != -1:
+                            if category.text == "Movies" or channel.lower().find("sky movies") != -1 \
+                                    or category.text == "Film":
                                 is_movie = "Movie"
                                 break
 

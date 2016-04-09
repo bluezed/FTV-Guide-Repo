@@ -140,6 +140,7 @@ For any more help please visit TVAddons.ag</label>
 			<visible>false</visible>
         </control>
 
+
         <control type="label" id="4102"><!-- Show Title -->
             <posx>1121</posx>
             <posy>565</posy>
@@ -185,12 +186,29 @@ For any more help please visit TVAddons.ag</label>
             <texturefocus>tvguide-program-grey-focus.png</texturefocus>
             <texturenofocus>desc-bg.png</texturenofocus>
             <onup>4002</onup>
+            <ondown>4005</ondown>
             <align>right</align>
             <aligny>center</aligny>
             <font>Font-Button</font>
             <textcolor>ffffffff</textcolor>
             <label>$ADDON[script.ftvguide 30307]</label>
         </control>
+
+        <control type="button" id="4005"><!-- watch from beginning -->
+            <posx>800</posx>
+            <posy>503</posy>
+            <width>332</width>
+            <height>67</height>
+            <texturefocus>tvguide-program-grey-focus.png</texturefocus>
+            <texturenofocus>desc-bg.png</texturenofocus>
+            <onup>4003</onup>
+            <align>right</align>
+            <aligny>center</aligny>
+            <font>Font-Button</font>
+            <textcolor>ffffffff</textcolor>
+            <label>Watch from beginning</label>
+        </control>
+
         <control type="button" id="4004"><!-- QUIT -->
             <posx>20</posx>
             <posy>650</posy>
