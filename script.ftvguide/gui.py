@@ -433,12 +433,19 @@ class TVGuide(xbmcgui.WindowXML):
         elif buttonClicked == PopupMenu.C_POPUP_PLAY_BEGINNING:
             title = program.title.replace(" ", "%20").replace(",", "").replace(u"\u2013", "-")
             title = unicode.encode(title, "ascii", "ignore")
-            if program.season is not None:
-                xbmc.executebuiltin("RunPlugin(plugin://plugin.video.meta/tv/play_by_name/%s/%s/%s/%s)" % (
-                    title, program.season, program.episode, program.language))
-            elif program.is_movie == "Movie":
+            if program.is_movie == "Movie":
+                selection = 0
+            elif program.season is not None:
+                selection = 1
+            else:
+                selection = xbmcgui.Dialog().select("test",["Search as Movie", "Search as TV Show"])
+
+            if selection == 0:
                 xbmc.executebuiltin("RunPlugin(plugin://plugin.video.meta/movies/play_by_name/%s/%s)" % (
                     title, program.language))
+            elif selection == 1:
+                xbmc.executebuiltin("RunPlugin(plugin://plugin.video.meta/tv/play_by_name/%s/%s/%s/%s)" % (
+                    title, program.season, program.episode, program.language))
 
     def setFocusId(self, controlId):
         control = self.getControl(controlId)
@@ -1014,9 +1021,6 @@ class PopupMenu(xbmcgui.WindowXMLDialog):
         channelTitleControl = self.getControl(self.C_POPUP_CHANNEL_TITLE)
         programTitleControl = self.getControl(self.C_POPUP_PROGRAM_TITLE)
         programPlayBeginningControl = self.getControl(self.C_POPUP_PLAY_BEGINNING)
-
-        if self.program.season is None and self.program.is_movie == None:
-            programPlayBeginningControl.setVisible(False)
 
         playControl.setLabel(strings(WATCH_CHANNEL, self.program.channel.title))
         if not self.program.channel.isPlayable():
