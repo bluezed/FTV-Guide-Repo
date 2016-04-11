@@ -238,7 +238,7 @@ class TVGuide(xbmcgui.WindowXML):
             self.onRedrawEPG(self.channelIdx, self.viewStartDate)
 
         elif action.getId() == ACTION_SELECT_ITEM:
-            if self.playChannel(self.osdChannel):
+            if self.playChannel(self.osdChannel, self.osdProgram):
                 self._hideOsd()
 
         elif action.getId() == ACTION_PAGE_UP:
@@ -370,7 +370,7 @@ class TVGuide(xbmcgui.WindowXML):
         if program is None:
             return
 
-        if not self.playChannel(program.channel):
+        if not self.playChannel(program.channel, program):
             result = self.streamingService.detectStream(program.channel)
             if not result:
                 # could not detect stream, show context menu
@@ -378,7 +378,7 @@ class TVGuide(xbmcgui.WindowXML):
             elif type(result) == str:
                 # one single stream detected, save it and start streaming
                 self.database.setCustomStreamUrl(program.channel, result)
-                self.playChannel(program.channel)
+                self.playChannel(program.channel, program)
 
             else:
                 # multiple matches, let user decide
@@ -387,7 +387,7 @@ class TVGuide(xbmcgui.WindowXML):
                 d.doModal()
                 if d.stream is not None:
                     self.database.setCustomStreamUrl(program.channel, d.stream)
-                    self.playChannel(program.channel)
+                    self.playChannel(program.channel, program)
 
     def _showContextMenu(self, program):
         self._hideControl(self.C_MAIN_MOUSE_CONTROLS)
@@ -410,7 +410,7 @@ class TVGuide(xbmcgui.WindowXML):
             del d
 
         elif buttonClicked == PopupMenu.C_POPUP_PLAY:
-            self.playChannel(program.channel)
+            self.playChannel(program.channel, program)
 
         elif buttonClicked == PopupMenu.C_POPUP_CHANNELS:
             d = ChannelsMenu(self.database)
@@ -569,17 +569,23 @@ class TVGuide(xbmcgui.WindowXML):
 
     def _channelUp(self):
         channel = self.database.getNextChannel(self.currentChannel)
-        self.playChannel(channel)
+        program = self.database.getCurrentProgram(channel)
+        self.playChannel(channel, program)
 
     def _channelDown(self):
         channel = self.database.getPreviousChannel(self.currentChannel)
-        self.playChannel(channel)
+        program = self.database.getCurrentProgram(channel)
+        self.playChannel(channel, program)
 
-    def playChannel(self, channel):
+    def playChannel(self, channel, program = None):
         self.currentChannel = channel
         wasPlaying = self.player.isPlaying()
         url = self.database.getStreamUrl(channel)
         if url:
+            if str.startswith(url,"plugin://plugin.video.meta") and program is not None:
+                import urllib
+                title = urllib.quote(program.title)
+                url += "/%s/%s" % (title, program.language)
             if url[0:9] == 'plugin://':
                 if self.alternativePlayback:
                     xbmc.executebuiltin('XBMC.RunPlugin(%s)' % url)
