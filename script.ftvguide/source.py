@@ -1013,6 +1013,7 @@ class XMLTVSource(Source):
                                 splitted = str.split(episode_num, ".")
                                 if splitted[0] != "":
                                     season = int(splitted[0]) + 1
+                                    is_movie = None # fix for misclassification
                                     if str.find(splitted[1], "/") != -1:
                                         episode = int(splitted[1].split("/")[0]) + 1
                                     elif splitted[1] != "":
