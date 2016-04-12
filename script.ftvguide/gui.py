@@ -444,8 +444,12 @@ class TVGuide(xbmcgui.WindowXML):
                 xbmc.executebuiltin("RunPlugin(plugin://plugin.video.meta/movies/play_by_name/%s/%s)" % (
                     title, program.language))
             elif selection == 1:
-                xbmc.executebuiltin("RunPlugin(plugin://plugin.video.meta/tv/play_by_name/%s/%s/%s/%s)" % (
-                    title, program.season, program.episode, program.language))
+                if program.season and program.episode:
+                    xbmc.executebuiltin("RunPlugin(plugin://plugin.video.meta/tv/play_by_name/%s/%s/%s/%s)" % (
+                        title, program.season, program.episode, program.language))
+                else:
+                    xbmc.executebuiltin("RunPlugin(plugin://plugin.video.meta/tv/play_by_name_only/%s/%s)" % (
+                        title, program.language))
 
     def setFocusId(self, controlId):
         control = self.getControl(controlId)
