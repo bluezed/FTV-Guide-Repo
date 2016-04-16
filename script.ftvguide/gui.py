@@ -438,7 +438,7 @@ class TVGuide(xbmcgui.WindowXML):
             elif program.season is not None:
                 selection = 1
             else:
-                selection = xbmcgui.Dialog().select("test",["Search as Movie", "Search as TV Show"])
+                selection = xbmcgui.Dialog().select("Choose media type",["Search as Movie", "Search as TV Show"])
 
             if selection == 0:
                 xbmc.executebuiltin("RunPlugin(plugin://plugin.video.meta/movies/play_by_name/%s/%s)" % (
