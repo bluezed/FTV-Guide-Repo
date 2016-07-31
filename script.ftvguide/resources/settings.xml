@@ -21,7 +21,8 @@
 	
 	<category label="30114">
         <setting id="autostart" label="30900" type="bool" default="false" />
-		<setting id="enable.osd" label="30118" type="bool" default="true" enable="eq(2,false)" />
+		<setting id="enable.osd" label="30118" type="bool" default="true" enable="eq(3,false)" />
+		<setting id="background.stream" label="30450" type="bool" default="false" />
 		<setting label="30119" type="lsep" />
 		<setting id="alternative.playback" label="30120" type="bool" default="false" />
 		<setting label="30121" type="lsep" />
