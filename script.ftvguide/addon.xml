@@ -67,9 +67,9 @@
 		<assets>
           <icon>resources/icon.png</icon>
           <fanart>resources/fanart.jpg</fanart>
-          <screenshot>resources/screenshot000.png</screenshot>
           <screenshot>resources/screenshot001.png</screenshot>
           <screenshot>resources/screenshot002.png</screenshot>
+          <screenshot>resources/screenshot003.png</screenshot>
         </assets>
 	</extension>
 </addon>
