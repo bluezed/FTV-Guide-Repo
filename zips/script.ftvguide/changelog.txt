@@ -1,4 +1,9 @@
 --------------------------
+FTV Guide - 2.0.24
+--------------------------
++ Changes for the guide to return to correct channel and timeslot after streaming
+
+--------------------------
 FTV Guide - 2.0.23
 --------------------------
 + Merged Pull Request: Added option to allow background streaming (Thanks jakgibb)

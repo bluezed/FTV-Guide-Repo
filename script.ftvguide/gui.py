@@ -21,6 +21,8 @@
 #  http://www.gnu.org/copyleft/gpl.html
 #
 import datetime
+import json
+import os
 import threading
 import time
 
@@ -32,6 +34,7 @@ from notification import Notification
 from strings import *
 
 import streaming
+from utils import reset_playing
 
 DEBUG = False
 
@@ -138,6 +141,10 @@ class TVGuide(xbmcgui.WindowXML):
         self.streamingService = streaming.StreamsService(ADDON)
         self.player = xbmc.Player()
         self.database = None
+        self.proc_file = xbmc.translatePath(os.path.join(ADDON.getAddonInfo('profile'), 'proc'))
+
+        if not os.path.exists(self.proc_file):
+            self.reset_playing()
 
         self.mode = MODE_EPG
         self.currentChannel = None
@@ -168,6 +175,7 @@ class TVGuide(xbmcgui.WindowXML):
             self.isClosing = True
             if self.player.isPlaying():
                 if ADDON.getSetting('background.stream') == 'false':
+                    self.reset_playing()
                     self.player.stop()
             if self.database:
                 self.database.close(super(TVGuide, self).close)
@@ -175,6 +183,8 @@ class TVGuide(xbmcgui.WindowXML):
                 super(TVGuide, self).close()
 
     def onInit(self):
+        is_playing, play_data = self.check_is_playing()
+
         self._hideControl(self.C_MAIN_MOUSE_CONTROLS, self.C_MAIN_OSD)
         self._showControl(self.C_MAIN_EPG, self.C_MAIN_LOADING)
         self.setControlLabel(self.C_MAIN_LOADING_TIME_LEFT, strings(BACKGROUND_UPDATE_IN_PROGRESS))
@@ -192,7 +202,17 @@ class TVGuide(xbmcgui.WindowXML):
             self.epgView.width = control.getWidth()
             self.epgView.cellHeight = control.getHeight() / CHANNELS_PER_PAGE
 
-        if self.database:
+        if is_playing and 'idx' in play_data:
+            self.viewStartDate = datetime.datetime.today()
+            self.viewStartDate -= datetime.timedelta(minutes=self.viewStartDate.minute % 30,
+                                                     seconds=self.viewStartDate.second)
+            self.channelIdx = play_data['idx']
+
+        if self.database and 'y' in play_data:
+            self.focusPoint.y = play_data['y']
+            self.onRedrawEPG(self.channelIdx, self.viewStartDate,
+                             focusFunction=self._findCurrentTimeslot)
+        elif self.database:
             self.onRedrawEPG(self.channelIdx, self.viewStartDate)
         else:
             try:
@@ -201,7 +221,8 @@ class TVGuide(xbmcgui.WindowXML):
                 self.onSourceNotConfigured()
                 self.close()
                 return
-            self.database.initialize(self.onSourceInitialized, self.isSourceInitializationCancelled)
+            self.database.initialize(self.onSourceInitialized,
+                                     self.isSourceInitializationCancelled)
 
         self.updateTimebar()
 
@@ -512,7 +533,9 @@ class TVGuide(xbmcgui.WindowXML):
         if ADDON.getSetting('program.background.enabled') == 'true' and program.imageLarge is not None:
             self.setControlImage(self.C_MAIN_BACKGROUND, program.imageLarge)
 
-        if self.player.isPlaying() and not self.osdEnabled and ADDON.getSetting('background.stream') == 'false':
+        if self.player.isPlaying() and not self.osdEnabled and \
+                        ADDON.getSetting('background.stream') == 'false':
+            self.reset_playing()
             self.player.stop()
 
     def _left(self, currentFocus):
@@ -590,6 +613,7 @@ class TVGuide(xbmcgui.WindowXML):
         wasPlaying = self.player.isPlaying()
         url = self.database.getStreamUrl(channel)
         if url:
+            self.set_playing()
             if str.startswith(url, "plugin://plugin.video.meta") and program is not None:
                 import urllib
                 title = urllib.quote(program.title)
@@ -839,10 +863,48 @@ class TVGuide(xbmcgui.WindowXML):
 
         return not xbmc.abortRequested and not self.isClosing
 
+    def check_is_playing(self):
+        is_playing = self.player.isPlaying()
+        play_data = {}
+        if not self.isClosing:
+            f = open(self.proc_file, 'r')
+            data = f.read()
+            if len(data) > 0:
+                is_playing = True
+                play_data = json.loads(data)
+            f.close()
+        debug('[%s] Checking Play-State... is_playing: %s, data: %s '
+              % (ADDON.getAddonInfo('id'), str(is_playing), str(play_data)))
+        return is_playing, play_data
+
+    def set_playing(self):
+        f = open(self.proc_file, 'w')
+        data = {'timestamp': datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
+                'y': self.focusPoint.y, 'idx': self.channelIdx}
+        f.write(json.dumps(data))
+        f.close()
+
+    def reset_playing(self):
+        reset_playing()
+
     def onPlayBackStopped(self):
         if not self.player.isPlaying() and not self.isClosing:
+            is_playing, play_data = self.check_is_playing()
             self._hideControl(self.C_MAIN_OSD)
-            self.onRedrawEPG(self.channelIdx, self.viewStartDate)
+            self.viewStartDate = datetime.datetime.today()
+            self.viewStartDate -= datetime.timedelta(minutes=self.viewStartDate.minute % 30,
+                                                     seconds=self.viewStartDate.second)
+            if is_playing and 'idx' in play_data:
+                self.viewStartDate = datetime.datetime.today()
+                self.viewStartDate -= datetime.timedelta(minutes=self.viewStartDate.minute % 30,
+                                                         seconds=self.viewStartDate.second)
+                self.channelIdx = play_data['idx']
+
+            if self.database and 'y' in play_data:
+                self.focusPoint.y = play_data['y']
+                self.onRedrawEPG(self.channelIdx, self.viewStartDate,
+                                 focusFunction=self._findCurrentTimeslot)
+                self.reset_playing()
 
     def _secondsToXposition(self, seconds):
         return self.epgView.left + (seconds * self.epgView.width / 7200)
@@ -922,6 +984,25 @@ class TVGuide(xbmcgui.WindowXML):
             right = left + control.getWidth()
 
             if left <= point.x <= right and top <= point.y <= bottom:
+                return control
+
+        return None
+
+    def _findCurrentTimeslot(self, point):
+        y = point.y
+        control = self.getControl(self.C_MAIN_TIMEBAR)
+        if control:
+            (x, _) = control.getPosition()
+        else:
+            x = point.x
+
+        for elem in self.controlAndProgramList:
+            control = elem.control
+            (left, top) = control.getPosition()
+            bottom = top + control.getHeight()
+            right = left + control.getWidth()
+
+            if left <= x <= right and top <= y <= bottom:
                 return control
 
         return None

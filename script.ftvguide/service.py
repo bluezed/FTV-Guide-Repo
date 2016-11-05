@@ -25,6 +25,7 @@ import xbmcaddon
 import notification
 import xbmc
 import source
+from utils import reset_playing
 
 
 class Service(object):
@@ -48,6 +49,9 @@ class Service(object):
 
 
 if __name__ == '__main__':
+    # After a reboot the proc file should be wiped!
+    reset_playing()
+
     try:
         ADDON = xbmcaddon.Addon('script.ftvguide')
         if ADDON.getSetting('autostart') == "true":

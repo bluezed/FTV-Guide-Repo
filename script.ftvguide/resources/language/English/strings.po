@@ -380,7 +380,6 @@ msgstr ""
 
 #empty strings from id 30451 to 30499
 
-
 msgctxt "#30500"
 msgid "[B]Edit channel order and visibility[/B]"
 msgstr ""

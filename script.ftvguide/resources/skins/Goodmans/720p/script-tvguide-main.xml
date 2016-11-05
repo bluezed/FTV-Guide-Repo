@@ -559,13 +559,13 @@
             </control>
             <control type="image" id="4023">
                 <description>Program logo / Source logo</description>
-                <posx>930</posx>
-                <posy>515</posy>
+                <posx>910</posx>
+                <posy>90</posy>
                 <width>320</width>
                 <height>160</height>
                 <aspectratio>keep</aspectratio>
                 <fadetime>500</fadetime>
-				<visible>false</visible>
+				<visible>true</visible>
                 <texture>tvguide-logo-epg.png</texture>
             </control>
 

@@ -478,7 +478,7 @@
             <control type="image" id="4023">
                 <description>Program logo / Source logo</description>
                 <posx>930</posx>
-                <posy>515</posy>
+                <posy>520</posy>
                 <width>320</width>
                 <height>160</height>
                 <aspectratio>keep</aspectratio>

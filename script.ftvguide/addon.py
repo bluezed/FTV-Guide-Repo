@@ -22,6 +22,10 @@
 #  http://www.gnu.org/copyleft/gpl.html
 #
 import gui
+from utils import reset_playing
+
+# After a restart the proc file should be wiped!
+reset_playing()
 
 try:
     w = gui.TVGuide()

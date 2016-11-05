@@ -131,7 +131,7 @@
 				
 				<control type="label" id="3999">
                     <description>Displays todays date</description>
-                    <posx>1120</posx>
+                    <posx>1100</posx>
                     <posy>200</posy>
                     <width>500</width>
                     <height>100</height>
@@ -458,13 +458,13 @@
             </control>
             <control type="image" id="4023">
                 <description>Program logo / Source logo</description>
-                <posx>930</posx>
-                <posy>515</posy>
+                <posx>910</posx>
+                <posy>80</posy>
                 <width>320</width>
                 <height>160</height>
                 <aspectratio>keep</aspectratio>
                 <fadetime>500</fadetime>
-				<visible>false</visible>
+				<visible>true</visible>
                 <texture>tvguide-logo-epg.png</texture>
             </control>
 
