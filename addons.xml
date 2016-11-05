@@ -13,7 +13,7 @@
 	</extension>
 </addon>
 
-<addon id="script.ftvguide" name="FTV Guide" version="2.0.24" provider-name="rayw1986, bluezed">
+<addon id="script.ftvguide" name="FTV Guide" version="2.0.24a" provider-name="rayw1986, bluezed">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 		<import addon="script.module.simplejson" version="3.3.0"/>
@@ -77,6 +77,14 @@
 		<source>https://github.com/bluezed/FTV-Guide-Repo</source>
         <website></website>
 		<email></email>
+		<news>v2.0.24a Changes for the guide to return to correct channel and timeslot after streaming</news>
+		<assets>
+          <icon>resources/icon.png</icon>
+          <fanart>resources/fanart.jpg</fanart>
+          <screenshot>resources/screenshot000.png</screenshot>
+          <screenshot>resources/screenshot001.png</screenshot>
+          <screenshot>resources/screenshot002.png</screenshot>
+        </assets>
 	</extension>
 </addon>
 </addons>
