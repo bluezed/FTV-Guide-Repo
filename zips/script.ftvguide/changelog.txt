@@ -1,4 +1,9 @@
 --------------------------
+FTV Guide - 2.0.25
+--------------------------
++ Added workaround for DST issue on Android... hopefully
+
+--------------------------
 FTV Guide - 2.0.24a
 --------------------------
 + Changes for the guide to return to correct channel and timeslot after streaming

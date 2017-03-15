@@ -390,11 +390,14 @@ class Database(object):
                     else:
                         channel = program.channel
 
-                    c.execute(
-                        'INSERT INTO programs(channel, title, start_date, end_date, description, image_large, image_small, season, episode, is_movie, language, source, updates_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                        [channel, program.title, program.startDate, program.endDate, program.description,
-                         program.imageLarge, program.imageSmall, program.season, program.episode, program.is_movie,
-                         program.language, self.source.KEY, updatesId])
+                    try:
+                        c.execute(
+                            'INSERT INTO programs(channel, title, start_date, end_date, description, image_large, image_small, season, episode, is_movie, language, source, updates_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                            [channel, program.title, program.startDate, program.endDate, program.description,
+                             program.imageLarge, program.imageSmall, program.season, program.episode, program.is_movie,
+                             program.language, self.source.KEY, updatesId])
+                    except sqlite3.InterfaceError:
+                        pass
 
             # channels updated
             c.execute("UPDATE sources SET channels_updated=? WHERE id=?", [datetime.datetime.now(), self.source.KEY])
