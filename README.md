@@ -10,8 +10,6 @@ Repository that hosts the FTVGuide Kodi add on.
 
 This repository is maintained by rayw1986 and bluezed.
 
-For official support go to the forums on [tvaddons.ag](https://forums.tvaddons.ag/ftv-guide-for-kodi/)
-
 Download the Repository from [HERE](http://raw.github.com/bluezed/FTV-Guide-Repo/master/zips/repository.FTV-Guide-Repo/repository.FTV-Guide-Repo-1.1.zip)
 Or scan this QR-Code                                                                                     
 ![](http://s19.postimg.org/r8g0oeyjj/qr_code.png)

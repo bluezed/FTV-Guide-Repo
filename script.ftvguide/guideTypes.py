@@ -48,14 +48,15 @@ class GuideTypes(object):
     filePath = xbmc.translatePath(os.path.join('special://profile', 'addon_data', 'script.ftvguide', 'guides.ini'))
 
     def __init__(self):
+        guideTypes = []
+        defaultGuideId = 0  # fallback to the first guide in case no default is actually set in the ini file
         try:
             fetcher = FileFetcher('guides.ini', ADDON)
             if fetcher.fetchFile() < 0:
                 xbmcgui.Dialog().ok(strings(FETCH_ERROR_TITLE), strings(FETCH_ERROR_LINE1), strings(FETCH_ERROR_LINE2))
 
             self.guideParser.read(self.filePath)
-            guideTypes = []
-            defaultGuideId = 0  # fallback to the first guide in case no default is actually set in the ini file
+
             for section in self.guideParser.sections():
                 sectMap = self.SectionMap(section)
                 id = int(sectMap['id'])
@@ -69,10 +70,15 @@ class GuideTypes(object):
             self.guideTypes = sorted(guideTypes, key=itemgetter(self.GUIDE_SORT))
             xbmc.log('[script.ftvguide] GuideTypes collected: %s' % str(self.guideTypes), xbmc.LOGDEBUG)
 
-            if str(ADDON.getSetting('xmltv.type')) == '':
-                ADDON.setSetting('xmltv.type', str(defaultGuideId))
         except:
-            print 'unable to parse guides.ini'
+            xbmc.log('[script.ftvguide] unable to parse guides.ini', xbmc.LOGWARNING)
+
+        if len(guideTypes) == 0:
+            self.guideTypes.append((self.CUSTOM_FILE_ID, 9000, "Custom File", "CUSTOM", True))
+            defaultGuideId = self.CUSTOM_FILE_ID
+
+        if str(ADDON.getSetting('xmltv.type')) == '':
+            ADDON.setSetting('xmltv.type', str(defaultGuideId))
 
     def SectionMap(self, section):
         dict1 = {}
